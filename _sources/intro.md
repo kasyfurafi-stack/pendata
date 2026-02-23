@@ -19,9 +19,7 @@
 
 ## Deskripsi Mata Kuliah
 
-Mata kuliah **Penambangan Data (Data Mining)** mempelajari proses menemukan pola, korelasi, dan informasi tersembunyi yang bermanfaat dari kumpulan data yang besar. Penambangan data melibatkan teknik **statistik, matematika, kecerdasan buatan, dan machine learning** untuk mengekstraksi pengetahuan dari berbagai database besar.
-
-Istilah "penambangan data" dianalogikan seperti menambang emas dari tumpukan batu, tanah, dan pasir — di mana yang dicari adalah informasi berharga dari data mentah yang tersedia.
+**Penambangan Data (Data Mining)** adalah istilah yang tidak cocok karena tujuan penambangan data bukanlah mengekstraksi atau menambang data itu sendiri. Alih-alih, sejumlah besar data sudah tersedia, dan penambangan data mengekstraksi makna atau pengetahuan yang bermanfaat dari data tersebut. Proses yang umum dari pengumpulan, penyimpanan, analisis, dan penambangan data diuraikan di bawah ini.
 
 > **Referensi utama situs dosen pengampu:** [https://mulaab.github.io/datamining/](https://mulaab.github.io/datamining/)
 
