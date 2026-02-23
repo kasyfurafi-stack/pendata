@@ -4,6 +4,15 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: Chapters 1
+- file: Chapters 2
+- file: Chapters 3
+- file: Chapters 4
+- file: Chapters 5
+- file: Chapters 6
+- file: Chapters 7
+- file: Chapters 8
+- file: Chapters 9
+- file: Chapters 10
+- file: Chapters 11
+- file: Chapters 12
