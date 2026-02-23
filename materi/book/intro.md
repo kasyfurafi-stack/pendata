@@ -3,18 +3,18 @@
 ## Tentang Saya
 
 
--  **Nama** | Kasyfu Rafi Susanto
--  **NIM** | 240411100207
--  **Program Studi** | S1 Teknik Informatika 
+-  **Nama**             : Kasyfu Rafi Susanto
+-  **NIM**              : 240411100207
+-  **Program Studi**    : S1 Teknik Informatika 
 
 ---
 ## Informasi Mata Kuliah
 
--  **Mata Kuliah** | Penambangan Data (Data Mining) 
--  **Kelas** | A 
--  **Dosen Pengampu** | Bapak Mula'ab, S.Si., M.Kom. (NIP 197305202002121001) 
--  **Semester** | 4 (Empat) 
--  **Program Studi** | S1 Teknik Informatika 
+-  **Mata Kuliah**      : Penambangan Data (Data Mining) 
+-  **Kelas**            : A 
+-  **Dosen Pengampu**   : Bapak Mula'ab, S.Si., M.Kom. (NIP 197305202002121001) 
+-  **Semester**         : 4 (Empat) 
+-  **Program Studi**    : S1 Teknik Informatika 
 ---
 
 ## Deskripsi Mata Kuliah
@@ -25,4 +25,4 @@ Istilah "penambangan data" dianalogikan seperti menambang emas dari tumpukan bat
 
 > **Referensi utama situs dosen pengampu:** [https://mulaab.github.io/datamining/](https://mulaab.github.io/datamining/)
 
----
+
