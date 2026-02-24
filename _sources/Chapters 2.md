@@ -1,6 +1,6 @@
 # Chapters 2 - Memahami Data
 
-# Korelasi antara sepal_width dan sepal_length
+## Korelasi antara sepal_width dan sepal_length
 ![Grafik](grafik/sw-sl.png)
 
 ### penjelasan
@@ -8,7 +8,7 @@ Dari gambar di atas menunjukkan korelasi antara sepal_widh dan sepal_length sang
 
 ---
 
-# Korelasi antara petal_width dan petal_length
+## Korelasi antara petal_width dan petal_length
 
 ![Grafik](grafik/pw-pl.png)
 
@@ -16,34 +16,35 @@ Dari gambar di atas menunjukkan korelasi antara sepal_widh dan sepal_length sang
 dari gambar di atas menunjukkan korelasi antara petal_width dan petal_length sangat kuat, dikarenakan Titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai petal_length, semakin besar pula nilai petal_width. artinya kedua variabel sangat rapat membentuk pola linear yang jelas. namun terdapat Dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.
 
 ---
-# Korelasi antara sepal_length dan petal_length
+## Korelasi antara sepal_length dan petal_length
 ![Grafik](grafik/sl-pl.png)
- # penjelasan
- Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_length sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_length. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.
+
+### penjelasan
+Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_length sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_length. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.
 
  ---
-# Korelasi antara sepal_length dan petal_width
+## Korelasi antara sepal_length dan petal_width
 ![Grafik](grafik/sl-pw.png)
 
 ### Penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_width sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_width. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu
 
 ---
-# Korelasi antara sepal_width dan petal_length
+## Korelasi antara sepal_width dan petal_length
 ![Grafik](grafik/sw-pl.png)
 
 ### penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_width dan petal_length cenderung lemah, dikarenakan titik-titik data tidak membentuk pola linear yang konsisten dari kiri bawah ke kanan atas. Terlihat adanya dua cluster yang sangat terpisah secara vertikal, di mana cluster bawah memiliki petal_length rendah dan cluster atas memiliki petal_length tinggi, namun dalam masing-masing cluster tidak ada hubungan yang jelas dengan sepal_width. Artinya kedua variabel tidak menunjukkan pola yang rapat dan penyebaran data relatif acak. Dua cluster yang terpisah ini kemungkinan besar merepresentasikan spesies iris yang berbeda dengan karakteristik yang sangat berbeda, dan pemisahan yang sangat jelas ini tidak menyebabkan ambigu
 
 ---
-# Korelasi antara sepal_width dan petal_width
+## Korelasi antara sepal_width dan petal_width
 ![Grafik](grafik/sw-pw.png)
 
 ### Penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_width dan petal_width lemah atau tidak konsisten, dikarenakan titik-titik data tidak membentuk pola linear yang jelas dari kiri bawah ke kanan atas. Terlihat adanya dua cluster yang sangat terpisah secara vertikal, di mana cluster bawah memiliki petal_width sangat rendah dan cluster atas memiliki petal_width lebih tinggi, namun dalam masing-masing cluster penyebaran data relatif acak tanpa menunjukkan hubungan yang kuat dengan sepal_width. Artinya kedua variabel tidak membentuk pola linear yang rapat dan peningkatan sepal_width tidak diikuti oleh peningkatan petal_width secara konsisten. Dua cluster yang terpisah ini kemungkinan besar merepresentasikan spesies iris yang berbeda, dan pemisahan yang sangat jelas ini tidak menyebabkan ambigu.
 
 ---
-# Statistik dikriptif
+## Statistik dikriptif
 ![Grafik](grafik/struktur.png)
 
 ### penjelasan 
@@ -51,12 +52,13 @@ Berdasarkan tabel statistik deskriptif di atas, dataset Iris menunjukkan karakte
 
 ---
 
-# Google Collab
+## Google Collab
 ### Link
 https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing
-### kode
-```sql
 ---
+### kode
+
+```sql
 import pandas as pd
 from scipy import stats
 
@@ -84,6 +86,7 @@ print("Variansi        :", "{0:.2f}".format(round(df['sepal_length'].var(), 2)))
 # 4. Memperbaiki perhitungan modus agar spesifik ke kolom 'sepal_length' saja
 mode = stats.mode(df['sepal_length'], keepdims=True)
 print("Nilai modus {} dengan jumlah {}".format(mode.mode[0], mode.count[0]))
+```
 ---
 ### Output
 ```sql
@@ -102,6 +105,7 @@ Kemencengan 2   : 0.314911
 Standar Deviasi : 0.83
 Variansi        : 0.69
 Nilai modus 5.0 dengan jumlah 10
+```
 ---
 
 ### penjelasan
