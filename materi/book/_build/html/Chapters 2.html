@@ -435,7 +435,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="korelasi-antara-sepal-width-dan-sepal-length">
 <h1>Korelasi antara sepal_width dan sepal_length<a class="headerlink" href="#korelasi-antara-sepal-width-dan-sepal-length" title="Permalink to this heading">#</a></h1>
-<p><img alt="Grafik" src="grafik/sw-sl.png" /></p>
+<p><img alt="Grafik" src="_images/sw-sl.png" /></p>
 <section id="penjelasan">
 <h2>penjelasan<a class="headerlink" href="#penjelasan" title="Permalink to this heading">#</a></h2>
 <p>Dari gambar di atas menunjukkan korelasi antara sepal_widh dan sepal_length sangat lemah atau tidak ada korelasi, dikarenakan Titik-titik data tersebar tanpa membentuk pola yang jelas, menunjukkan bahwa tidak ada hubungan yang kuat antara sepal length dan sepal width. artinya Kedua variabel ini dapat dianggap sebagai fitur yang berdiri sendiri dan tidak saling mempengaruhi secara linear.</p>
@@ -533,7 +533,7 @@ print(&quot;Variansi        :&quot;, &quot;{0:.2f}&quot;.format(round(df[&#39;se
 mode = stats.mode(df[&#39;sepal_length&#39;], keepdims=True)
 print(&quot;Nilai modus {} dengan jumlah {}&quot;.format(mode.mode[0], mode.count[0]))
 ---
-## Output
+### Output
 ```sql
 ---
 Daftar Kolom: [&#39;sepal_length&#39;, &#39;sepal_width&#39;, &#39;petal_length&#39;, &#39;petal_width&#39;, &#39;species&#39;]
@@ -552,7 +552,7 @@ Variansi        : 0.69
 Nilai modus 5.0 dengan jumlah 10
 ---
 
-## penjelasan
+### penjelasan
 Kode tersebut bertujuan untuk melakukan **analisis statistik deskriptif** pada dataset **Iris dataset**, khususnya pada kolom `sepal_length`. Program membaca file CSV, memastikan nama kolom benar, lalu menghitung berbagai ukuran statistik seperti jumlah data, rata-rata, nilai minimum dan maksimum, kuartil (Q1, median, Q3), standar deviasi, variansi, kemencengan (skewness), serta modus. Tujuannya adalah untuk memahami karakteristik, penyebaran, dan bentuk distribusi data sebelum dilakukan analisis lanjutan.
 </pre></div>
 </div>
