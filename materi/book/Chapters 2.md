@@ -54,8 +54,8 @@ Berdasarkan tabel statistik deskriptif di atas, dataset Iris menunjukkan karakte
 
 ## Google Collab
 ### Link 
-https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing
 <br>
+https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing
 ---
 ### kode
 
@@ -65,15 +65,11 @@ https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sh
 import pandas as pd
 from scipy import stats
 
-# 1. Membaca file
 df = pd.read_csv("/content/IRIS.csv")
 
-# 2. Menampilkan daftar kolom untuk memastikan nama kolom benar
 print("Daftar Kolom:", df.columns.tolist())
 print("-" * 30)
 
-# 3. Menghitung statistik (Pastikan 'NilaiPreTest' benar-benar ada di hasil print kolom di atas)
-# I'll use 'sepal_length' as an example, but you should choose the correct column.
 print("Jumlah data     :", df['sepal_length'].count())
 print("Rata-rata       :", df['sepal_length'].mean())
 print("Nilai minimal   :", df['sepal_length'].min())
@@ -86,7 +82,6 @@ print("Kemencengan 2   :", "{0:.6f}".format(round(df['sepal_length'].skew(), 6))
 print("Standar Deviasi :", "{0:.2f}".format(round(df['sepal_length'].std(), 2)))
 print("Variansi        :", "{0:.2f}".format(round(df['sepal_length'].var(), 2)))
 
-# 4. Memperbaiki perhitungan modus agar spesifik ke kolom 'sepal_length' saja
 mode = stats.mode(df['sepal_length'], keepdims=True)
 print("Nilai modus {} dengan jumlah {}".format(mode.mode[0], mode.count[0]))
 ```
