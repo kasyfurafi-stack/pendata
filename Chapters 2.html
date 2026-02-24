@@ -361,11 +361,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-collab">Google Collab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link">Link</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#https-colab-research-google-com-drive-1nan3pq3xz-5hnnyu9vbmqvbksbwderp4-usp-sharing-br">https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing
-<br/></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode">kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">penjelasan</a></li>
 </ul>
@@ -450,41 +445,33 @@ document.write(`
 <h2>Google Collab<a class="headerlink" href="#google-collab" title="Permalink to this heading">#</a></h2>
 <section id="link">
 <h3>Link<a class="headerlink" href="#link" title="Permalink to this heading">#</a></h3>
-</section>
-</section>
-<section id="https-colab-research-google-com-drive-1nan3pq3xz-5hnnyu9vbmqvbksbwderp4-usp-sharing-br">
-<h2><a class="reference external" href="https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing">https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing</a>
-<br><a class="headerlink" href="#https-colab-research-google-com-drive-1nan3pq3xz-5hnnyu9vbmqvbksbwderp4-usp-sharing-br" title="Permalink to this heading">#</a></h2>
-<section id="kode">
-<h3>kode<a class="headerlink" href="#kode" title="Permalink to this heading">#</a></h3>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>---
-import pandas as pd
-from scipy import stats
+<br>
+https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing
+---
+### kode
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">---</span>
+<span class="n">import</span><span class="w"> </span><span class="n">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pd</span>
+<span class="k">from</span><span class="w"> </span><span class="n">scipy</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">stats</span>
 
-# 1. Membaca file
-df = pd.read_csv(&quot;/content/IRIS.csv&quot;)
+<span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="ss">&quot;/content/IRIS.csv&quot;</span><span class="p">)</span>
 
-# 2. Menampilkan daftar kolom untuk memastikan nama kolom benar
-print(&quot;Daftar Kolom:&quot;, df.columns.tolist())
-print(&quot;-&quot; * 30)
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Daftar Kolom:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;-&quot;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
 
-# 3. Menghitung statistik (Pastikan &#39;NilaiPreTest&#39; benar-benar ada di hasil print kolom di atas)
-# I&#39;ll use &#39;sepal_length&#39; as an example, but you should choose the correct column.
-print(&quot;Jumlah data     :&quot;, df[&#39;sepal_length&#39;].count())
-print(&quot;Rata-rata       :&quot;, df[&#39;sepal_length&#39;].mean())
-print(&quot;Nilai minimal   :&quot;, df[&#39;sepal_length&#39;].min())
-print(&quot;Q1              :&quot;, df[&#39;sepal_length&#39;].quantile(0.25))
-print(&quot;Q2 (Median)     :&quot;, df[&#39;sepal_length&#39;].quantile(0.5))
-print(&quot;Q3              :&quot;, df[&#39;sepal_length&#39;].quantile(0.75))
-print(&quot;Nilai Max       :&quot;, df[&#39;sepal_length&#39;].max())
-print(&quot;Kemencengan 1   :&quot;, &quot;{0:.2f}&quot;.format(round(df[&#39;sepal_length&#39;].skew(), 2)))
-print(&quot;Kemencengan 2   :&quot;, &quot;{0:.6f}&quot;.format(round(df[&#39;sepal_length&#39;].skew(), 6)))
-print(&quot;Standar Deviasi :&quot;, &quot;{0:.2f}&quot;.format(round(df[&#39;sepal_length&#39;].std(), 2)))
-print(&quot;Variansi        :&quot;, &quot;{0:.2f}&quot;.format(round(df[&#39;sepal_length&#39;].var(), 2)))
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Jumlah data     :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="k">count</span><span class="p">())</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Rata-rata       :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Nilai minimal   :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="k">min</span><span class="p">())</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Q1              :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">quantile</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">25</span><span class="p">))</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Q2 (Median)     :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">quantile</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Q3              :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">quantile</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">))</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Nilai Max       :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="k">max</span><span class="p">())</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Kemencengan 1   :&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;{0:.2f}&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">skew</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Kemencengan 2   :&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;{0:.6f}&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">skew</span><span class="p">(),</span><span class="w"> </span><span class="mi">6</span><span class="p">)))</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Standar Deviasi :&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;{0:.2f}&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">std</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Variansi        :&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;{0:.2f}&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">].</span><span class="n">var</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
 
-# 4. Memperbaiki perhitungan modus agar spesifik ke kolom &#39;sepal_length&#39; saja
-mode = stats.mode(df[&#39;sepal_length&#39;], keepdims=True)
-print(&quot;Nilai modus {} dengan jumlah {}&quot;.format(mode.mode[0], mode.count[0]))
+<span class="k">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="k">mode</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">keepdims</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="ss">&quot;Nilai modus {} dengan jumlah {}&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="k">mode</span><span class="p">.</span><span class="k">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="k">mode</span><span class="p">.</span><span class="k">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 </section>
@@ -611,11 +598,6 @@ print(&quot;Nilai modus {} dengan jumlah {}&quot;.format(mode.mode[0], mode.coun
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-collab">Google Collab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link">Link</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#https-colab-research-google-com-drive-1nan3pq3xz-5hnnyu9vbmqvbksbwderp4-usp-sharing-br">https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing
-<br/></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode">kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">penjelasan</a></li>
 </ul>
