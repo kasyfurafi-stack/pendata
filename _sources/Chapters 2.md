@@ -53,12 +53,15 @@ Berdasarkan tabel statistik deskriptif di atas, dataset Iris menunjukkan karakte
 ---
 
 ## Google Collab
-### Link
+### Link 
 https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sharing
+<br>
 ---
 ### kode
 
+
 ```sql
+---
 import pandas as pd
 from scipy import stats
 
@@ -88,6 +91,7 @@ mode = stats.mode(df['sepal_length'], keepdims=True)
 print("Nilai modus {} dengan jumlah {}".format(mode.mode[0], mode.count[0]))
 ```
 ---
+
 ### Output
 ```sql
 ---
