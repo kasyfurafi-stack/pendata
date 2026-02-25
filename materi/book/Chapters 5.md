@@ -1,1 +1,1 @@
-# Chapters 5 - Mengukur Jarak/Similaritas Data
+# Mengukur Jarak/Similaritas Data

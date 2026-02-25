@@ -1,1 +1,1 @@
-# Chapters 1 - Pengantar Data Mining
+# Pengantar Data Mining
