@@ -1,4 +1,11 @@
-# Chapters 2 - Memahami Data
+# Memahami Data
+
+## Tujuan pembelajaran
+   1. Mahasiswa dapat memahami konsep data mining
+   2. Mahasiswa dapat mengetahui proses data mining
+   3. Mahasiswa dapat mengetahui teknik teknik yang digunakan dalam data mining.
+
+---
 
 ## Korelasi antara sepal_width dan sepal_length
 ![Grafik](grafik/sw-sl.png)
