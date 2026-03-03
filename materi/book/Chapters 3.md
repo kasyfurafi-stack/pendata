@@ -25,7 +25,7 @@
 ---
 <h2>korelasi antara sepal_length dan petal_width</h2><br>
 
-![Grafik](grafik/c2/gambar4.png"/>
+![Grafik](grafik/c2/gambar4.png)
 <p>Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_width sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_width. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.</p>
 
 ---
@@ -52,7 +52,6 @@ Berbeda dengan pengukuran sepal, variabel petal_length dan petal_width menunjukk
 <h2>bukti screenshot</h2><br>
 
 ![Grafik](grafik/c2/ch1.png)
-
 ![Grafik](grafik/c2/ch2.png)
 
 ---
@@ -253,7 +252,8 @@ r
 i
 f
 ​ (misal: rendah=1, sedang=2, tinggi=3)</p><br>
-![Grafik](grafik/c2/image-2.png"/>
+
+![Grafik](grafik/c2/image-2.png)
 <p>Hitung jarak menggunakan metode numerik pada nilai 
 z
 i
@@ -305,7 +305,6 @@ dalam setiap cluster.</p>
 <p>gambar di atas merupakan hasil dari menghitung jarak pada data iris dimana prosesnya sama dengan yang tadi </p>
 
 ---
-![alt text](image-9.png)
 ![Grafik](grafik/c2/image-9.png)
 <p>gambar di atas merupakan visualiasi pengukuran jarak pada orange, tetapi sementara saya menggunakan widget csv file impor untuk mengimpor data iris bukan menggunakan sql table karena widget tersebut masih ada erornya atau tidak bisa di pakai dan belum menemukan solusinya</p>
 
