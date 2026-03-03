@@ -242,7 +242,8 @@ Jarak untuk atribut ke-f saja</td>
 <p>cara penghitungannya Menggunakan metode simple matching.</p><br>
 <h3>2. Atribut Numerik</h3><br>
 <p>Lakukan normalisasi terlebih dahulu agar skala seragam, misalnya dengan:</p><br>
-![Grafik](grafik/c2/image-1.png"/>
+
+![Grafik](grafik/c2/image-1.png)
 <p>Mean Absolute Deviation: lebih robust terhadap outlier</p><br>
 <p>Setelah dinormalisasi, hitung jarak dengan metode numerik (Euclidean, Manhattan, dll).</p><br>
 <h3>Atribut Ordinal</h3><br>
