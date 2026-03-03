@@ -1,5 +1,4 @@
-# Penambangan Data (Data Mining)
-
+# Materi perkuliahan - Data mining
 ## Tentang Saya
 
 
