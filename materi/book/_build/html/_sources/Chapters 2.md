@@ -6,55 +6,56 @@
    3. Mahasiswa dapat mengetahui teknik teknik yang digunakan dalam data mining.
 
 ---
+## Korelasi
 
-## Korelasi antara sepal_width dan sepal_length
+### Korelasi antara sepal_width dan sepal_length
 ![Grafik](grafik/sw-sl.png)
 
-### penjelasan
+#### penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_widh dan sepal_length sangat lemah atau tidak ada korelasi, dikarenakan Titik-titik data tersebar tanpa membentuk pola yang jelas, menunjukkan bahwa tidak ada hubungan yang kuat antara sepal length dan sepal width. artinya Kedua variabel ini dapat dianggap sebagai fitur yang berdiri sendiri dan tidak saling mempengaruhi secara linear.
 
 ---
 
-## Korelasi antara petal_width dan petal_length
+### Korelasi antara petal_width dan petal_length
 
 ![Grafik](grafik/pw-pl.png)
 
-### penjelasan
+#### penjelasan
 dari gambar di atas menunjukkan korelasi antara petal_width dan petal_length sangat kuat, dikarenakan Titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai petal_length, semakin besar pula nilai petal_width. artinya kedua variabel sangat rapat membentuk pola linear yang jelas. namun terdapat Dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.
 
 ---
-## Korelasi antara sepal_length dan petal_length
+### Korelasi antara sepal_length dan petal_length
 ![Grafik](grafik/sl-pl.png)
 
-### penjelasan
+#### penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_length sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_length. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.
 
  ---
-## Korelasi antara sepal_length dan petal_width
+### Korelasi antara sepal_length dan petal_width
 ![Grafik](grafik/sl-pw.png)
 
-### Penjelasan
+#### Penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_width sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_width. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu
 
 ---
-## Korelasi antara sepal_width dan petal_length
+### Korelasi antara sepal_width dan petal_length
 ![Grafik](grafik/sw-pl.png)
 
-### penjelasan
+#### penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_width dan petal_length cenderung lemah, dikarenakan titik-titik data tidak membentuk pola linear yang konsisten dari kiri bawah ke kanan atas. Terlihat adanya dua cluster yang sangat terpisah secara vertikal, di mana cluster bawah memiliki petal_length rendah dan cluster atas memiliki petal_length tinggi, namun dalam masing-masing cluster tidak ada hubungan yang jelas dengan sepal_width. Artinya kedua variabel tidak menunjukkan pola yang rapat dan penyebaran data relatif acak. Dua cluster yang terpisah ini kemungkinan besar merepresentasikan spesies iris yang berbeda dengan karakteristik yang sangat berbeda, dan pemisahan yang sangat jelas ini tidak menyebabkan ambigu
 
 ---
-## Korelasi antara sepal_width dan petal_width
+### Korelasi antara sepal_width dan petal_width
 ![Grafik](grafik/sw-pw.png)
 
-### Penjelasan
+#### Penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_width dan petal_width lemah atau tidak konsisten, dikarenakan titik-titik data tidak membentuk pola linear yang jelas dari kiri bawah ke kanan atas. Terlihat adanya dua cluster yang sangat terpisah secara vertikal, di mana cluster bawah memiliki petal_width sangat rendah dan cluster atas memiliki petal_width lebih tinggi, namun dalam masing-masing cluster penyebaran data relatif acak tanpa menunjukkan hubungan yang kuat dengan sepal_width. Artinya kedua variabel tidak membentuk pola linear yang rapat dan peningkatan sepal_width tidak diikuti oleh peningkatan petal_width secara konsisten. Dua cluster yang terpisah ini kemungkinan besar merepresentasikan spesies iris yang berbeda, dan pemisahan yang sangat jelas ini tidak menyebabkan ambigu.
 
 ---
-## Statistik dikriptif
+### Statistik dikriptif
 ![Grafik](grafik/struktur.png)
 
-### penjelasan 
+#### penjelasan 
 Berdasarkan tabel statistik deskriptif di atas, dataset Iris menunjukkan karakteristik yang menarik untuk setiap variabel pengukuran. Pada sepal_length, nilai rata-rata sebesar 5.84 cm sangat dekat dengan median 5.8 cm, mengindikasikan distribusi data yang relatif simetris dan terkonsentrasi di kisaran 5-6 cm dengan variasi yang kecil. Sementara itu, sepal_width memiliki mean 3.05 cm dengan median dan mode sama-sama bernilai 3 cm, menunjukkan bahwa lebar sepal cenderung homogen antar spesies dengan penyebaran data yang rapat. Berbeda dengan pengukuran sepal, variabel petal_length dan petal_width menunjukkan pola yang lebih kompleks. Nilai mode pada petal_length (1.5 cm) dan petal_width (0.2 cm) sangat berbeda dengan median masing-masing (4.35 cm dan 1.3 cm), yang mengindikasikan adanya distribusi bimodal atau dua kelompok data yang terpisah jelas. Hal ini diperkuat oleh nilai dispersi yang lebih tinggi pada petal_width (0.63) dibandingkan variabel lainnya, menunjukkan bahwa pengukuran petal memiliki variabilitas yang lebih besar dan lebih efektif untuk membedakan antar spesies
 
 ---
@@ -301,19 +302,19 @@ File
 Select Columns
   ↓
 Data Table
-  ↓
+  →
 Distributions
-  ↓
+  →
 Scatter Plot
-  ↓
+  →
 Distances (Gower)
   ↓
 Hierarchical Clustering
 ```
-
+![alur](grafik/c2/alur.png)
 ---
 
-✅ Hasil analisis ini bisa digunakan untuk:
+Hasil analisis ini bisa digunakan untuk:
 
 * melihat pola nilai siswa
 * membandingkan performa berdasarkan gender atau pendidikan orang tua
@@ -327,14 +328,14 @@ Berikut contoh **output tabel setelah clustering** .
 
 | gender | parental education | lunch        | math score | reading score | Cluster |
 | ------ | ------------------ | ------------ | ---------- | ------------- | ------- |
-| female | bachelor degree    | standard     | 72         | 72            | C1      |
-| female | some college       | standard     | 69         | 90            | C1      |
-| female | master degree      | standard     | 90         | 95            | C1      |
-| male   | associate degree   | free/reduced | 47         | 57            | C3      |
-| male   | some college       | standard     | 76         | 78            | C2      |
-| female | high school        | free/reduced | 45         | 50            | C3      |
-| male   | bachelor degree    | standard     | 88         | 82            | C1      |
-| female | some high school   | free/reduced | 60         | 65            | C2      |
+| female | bachelor degree    | standard     | 72         | 72            | C2      |
+| female | some college       | standard     | 69         | 90            | C2      |
+| female | master degree      | standard     | 90         | 95            | C3      |
+| male   | associate degree   | free/reduced | 47         | 57            | C1      |
+| male   | some college       | standard     | 76         | 78            | C3      |
+| female | high school        | free/reduced | 45         | 50            | C2      |
+| male   | bachelor degree    | standard     | 88         | 82            | C3      |
+| female | some high school   | free/reduced | 60         | 65            | C1      |
 | male   | high school        | free/reduced | 40         | 43            | C3      |
 | female | associate degree   | standard     | 70         | 72            | C2      |
 
@@ -342,20 +343,29 @@ Berikut contoh **output tabel setelah clustering** .
 
 ### Interpretasi Clustering
 
-**Cluster 1 (High Performance)**
+**C3 (Cluster Performa Tertinggi)**
 
-* nilai math > 80
-* nilai reading > 80
-* mayoritas lunch standard
+* **Math Score:** Nilai rata-rata 76.33, dengan sebaran rentang utama (kuartil) antara 68 hingga 85.
+* **Reading Score:** Nilai rata-rata 74.30, dengan sebaran rentang utama antara 64.50 hingga 84.
+* **Lunch:** Sangat didominasi oleh fasilitas *standard*.
+* **Gender:** Mayoritas adalah laki-laki (*male*).
+* **Parental Education:** Bervariasi secara merata dari *high school* hingga *degree*.
 
-**Cluster 2 (Medium Performance)**
+**C2 (Cluster Performa Menengah)**
 
-* nilai sekitar 60–75
-* campuran kategori pendidikan
+* **Math Score:** Nilai rata-rata 61.59, dengan sebaran rentang utama antara 53.50 hingga 70.
+* **Reading Score:** Nilai rata-rata 71.02, dengan sebaran rentang utama antara 63 hingga 79.
+* **Lunch:** Proporsi *standard* lebih besar, meskipun *free/reduced* juga masih cukup banyak.
+* **Gender:** Sangat didominasi oleh perempuan (*female*).
+* **Parental Education:** Bervariasi secara merata.
 
-**Cluster 3 (Low Performance)**
+**C1 (Cluster Performa Terendah)**
 
-* nilai < 60
-* banyak yang lunch free/reduced
+* **Math Score:** Nilai rata-rata terendah yaitu 47.09, dengan sebaran rentang utama antara 41 hingga 55.
+* **Reading Score:** Nilai rata-rata terendah yaitu 46.66, dengan sebaran rentang utama antara 42 hingga 53.50.
+* **Lunch:** Didominasi oleh siswa dengan fasilitas *free/reduced*.
+* **Gender:** Mayoritas adalah laki-laki (*male*).
+* **Parental Education:** Bervariasi secara merata.
 
 ---
+
