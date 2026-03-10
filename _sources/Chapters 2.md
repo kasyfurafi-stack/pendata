@@ -8,7 +8,7 @@
 ---
 ## Korelasi
 
-### Korelasi antara sepal_width dan sepal_length
+###  sepal_width dan sepal_length
 ![Grafik](grafik/sw-sl.png)
 
 #### penjelasan
@@ -16,7 +16,7 @@ Dari gambar di atas menunjukkan korelasi antara sepal_widh dan sepal_length sang
 
 ---
 
-### Korelasi antara petal_width dan petal_length
+###  petal_width dan petal_length
 
 ![Grafik](grafik/pw-pl.png)
 
@@ -24,28 +24,28 @@ Dari gambar di atas menunjukkan korelasi antara sepal_widh dan sepal_length sang
 dari gambar di atas menunjukkan korelasi antara petal_width dan petal_length sangat kuat, dikarenakan Titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai petal_length, semakin besar pula nilai petal_width. artinya kedua variabel sangat rapat membentuk pola linear yang jelas. namun terdapat Dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.
 
 ---
-### Korelasi antara sepal_length dan petal_length
+###  sepal_length dan petal_length
 ![Grafik](grafik/sl-pl.png)
 
 #### penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_length sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_length. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu.
 
  ---
-### Korelasi antara sepal_length dan petal_width
+###  sepal_length dan petal_width
 ![Grafik](grafik/sl-pw.png)
 
 #### Penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_length dan petal_width sangat kuat, dikarenakan titik-titik data membentuk pola yang jelas dari kiri bawah ke kanan atas, menunjukkan bahwa semakin besar nilai sepal_length, semakin besar pula nilai petal_width. Artinya kedua variabel sangat rapat membentuk pola linear yang jelas. Namun terdapat dua cluster yang terpisah kemungkinan besar merepresentasikan iris yang berbeda, tetapi tidak menyebabkan ambigu
 
 ---
-### Korelasi antara sepal_width dan petal_length
+###  sepal_width dan petal_length
 ![Grafik](grafik/sw-pl.png)
 
 #### penjelasan
 Dari gambar di atas menunjukkan korelasi antara sepal_width dan petal_length cenderung lemah, dikarenakan titik-titik data tidak membentuk pola linear yang konsisten dari kiri bawah ke kanan atas. Terlihat adanya dua cluster yang sangat terpisah secara vertikal, di mana cluster bawah memiliki petal_length rendah dan cluster atas memiliki petal_length tinggi, namun dalam masing-masing cluster tidak ada hubungan yang jelas dengan sepal_width. Artinya kedua variabel tidak menunjukkan pola yang rapat dan penyebaran data relatif acak. Dua cluster yang terpisah ini kemungkinan besar merepresentasikan spesies iris yang berbeda dengan karakteristik yang sangat berbeda, dan pemisahan yang sangat jelas ini tidak menyebabkan ambigu
 
 ---
-### Korelasi antara sepal_width dan petal_width
+###  sepal_width dan petal_width
 ![Grafik](grafik/sw-pw.png)
 
 #### Penjelasan
@@ -120,7 +120,7 @@ Kode tersebut bertujuan untuk melakukan **analisis statistik deskriptif** pada d
 
 ---
 
-## 1. Mengukur Jarak dengan Tipe Data Campuran
+## Mengukur Jarak dengan Tipe Data Campuran
 Mengukur jarak pada data dengan tipe campuran (numerik dan kategorikal) dilakukan menggunakan metode yang mampu menangani perbedaan tipe atribut. Salah satu metode yang paling umum digunakan adalah Gower Distance.
 
 
@@ -157,7 +157,7 @@ keterangan :
 - Hasil akhir adalah rata-rata dari kedua atribut.
 
 ---
-## 2. Analisis Menggunakan Orange Data Mining untuk Data Campuran
+##  Analisis Menggunakan Orange Data Mining untuk Data Campuran
 Analisis menggunakan Orange Data Mining untuk data campuran adalah proses menganalisis dataset yang memiliki lebih dari satu tipe data, seperti numerik (angka) dan kategorikal (teks/kategori), dengan memanfaatkan fitur visual workflow pada software Orange Data Mining.
 
 Dalam Orange, data campuran dapat dianalisis melalui beberapa tahapan utama:
