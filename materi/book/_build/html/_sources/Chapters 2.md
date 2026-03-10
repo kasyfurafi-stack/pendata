@@ -116,3 +116,246 @@ Nilai modus 5.0 dengan jumlah 10
 
 ### penjelasan
 Kode tersebut bertujuan untuk melakukan **analisis statistik deskriptif** pada dataset **Iris dataset**, khususnya pada kolom `sepal_length`. Program membaca file CSV, memastikan nama kolom benar, lalu menghitung berbagai ukuran statistik seperti jumlah data, rata-rata, nilai minimum dan maksimum, kuartil (Q1, median, Q3), standar deviasi, variansi, kemencengan (skewness), serta modus. Tujuannya adalah untuk memahami karakteristik, penyebaran, dan bentuk distribusi data sebelum dilakukan analisis lanjutan.
+
+---
+
+## 1. Mengukur Jarak dengan Tipe Data Campuran
+Mengukur jarak pada data dengan tipe campuran (numerik dan kategorikal) dilakukan menggunakan metode yang mampu menangani perbedaan tipe atribut. Salah satu metode yang paling umum digunakan adalah Gower Distance.
+
+
+Cara kerja Gower Distance
+
+- Atribut numerik
+Dihitung menggunakan selisih nilai yang dinormalisasi terhadap rentang data.
+
+- Atribut kategorikal
+Jika kategorinya sama → nilai jarak 0
+Jika berbeda → nilai jarak 1
+
+- Penggabungan jarak
+Nilai jarak dari setiap atribut kemudian dirata-ratakan untuk mendapatkan jarak total antar dua objek.
+
+---
+### Rumus sederhana
+![grafik](grafik/c2/campuran.png)
+
+keterangan :
+- Dij = jarak antara objek i dan j
+- Sijk = jarak pada atribut ke k
+- p = jumlah atribut 
+
+### contoh sederhana
+
+| **Objek** | **Umur** | **Gender** |
+|-----------|----------|------------|
+| A         | 20       | Male       |
+| B         | 25       | Male       |
+
+- Selisih umur dinormalisasi → nilai jarak numerik
+- Gender sama → jarak = 0
+- Hasil akhir adalah rata-rata dari kedua atribut.
+
+---
+## 2. Analisis Menggunakan Orange Data Mining untuk Data Campuran
+Analisis menggunakan Orange Data Mining untuk data campuran adalah proses menganalisis dataset yang memiliki lebih dari satu tipe data, seperti numerik (angka) dan kategorikal (teks/kategori), dengan memanfaatkan fitur visual workflow pada software Orange Data Mining.
+
+Dalam Orange, data campuran dapat dianalisis melalui beberapa tahapan utama:
+
+1. Import Data
+Dataset dimasukkan menggunakan widget File. Data dapat berupa CSV, Excel, atau format lain yang berisi atribut numerik dan kategorikal.
+
+2. Preprocessing Data
+Data dibersihkan dan disiapkan menggunakan widget seperti Select Columns, Edit Domain, atau Impute untuk menangani missing value dan menentukan tipe variabel.
+
+3. Eksplorasi Data
+Visualisasi dilakukan untuk memahami pola data menggunakan widget seperti Scatter Plot, Box Plot, atau Distributions.
+
+4. Analisis atau Pemodelan
+Data campuran dapat digunakan dalam berbagai metode analisis, misalnya:
+
+   - Clustering (K-Means, Hierarchical Clustering)
+   - Classification (Decision Tree, Random Forest, Logistic Regression)
+   - Association Rules
+
+5. Evaluasi Model
+Hasil model dievaluasi menggunakan widget seperti Test & Score, yang menampilkan metrik seperti accuracy, precision, dan recall.
+
+---
+## Laporan Pengukuran Jarak pada Data Campuran Menggunakan Orange
+
+### 1. Pendahuluan
+Dataset ini berisi data performa siswa dengan kombinasi atribut kategorikal dan numerik seperti gender, pendidikan orang tua, dan nilai ujian.
+
+### 2. Persiapan Data
+
+| gender | parental education | lunch        | math score | reading score |
+| ------ | ------------------ | ------------ | ---------- | ------------- |
+| female | bachelor's degree  | standard     | 72         | 72            |
+| male   | some college       | free/reduced | 47         | 57            |
+
+- gender → kategorikal
+- parental level of education → kategorikal
+- lunch → kategorikal
+- math score → numerik
+- reading score → numerik
+
+---
+### 3. Langkah-langkah di Orange
+Berikut **langkah-langkah analisis di Orange menggunakan dataset Student Performance**
+
+Dataset Kaggle:
+[https://www.kaggle.com/datasets/spscientist/students-performance-in-exams](https://www.kaggle.com/datasets/spscientist/students-performance-in-exams)
+
+---
+
+#### 1. Download Dataset
+
+1. Buka link Kaggle di atas.
+2. Klik **Download**.
+3. Ekstrak file hingga mendapatkan **StudentsPerformance.csv**.
+
+---
+
+#### 2. Import Data ke Orange
+
+1. Buka **Orange Data Mining**.
+2. Tarik widget **File** ke workspace.
+3. Klik **File → Browse**.
+4. Pilih file **StudentsPerformance.csv**.
+
+---
+
+#### 3. Pilih 5 Atribut
+
+1. Tambahkan widget **Select Columns**.
+2. Hubungkan **File → Select Columns**.
+3. Pilih atribut berikut:
+
+   * gender
+   * parental level of education
+   * lunch
+   * math score
+   * reading score
+
+Atribut lain bisa dipindahkan ke **Ignore**.
+
+---
+
+#### 4. Melihat Statistik Data
+
+1. Tambahkan widget **Data Table**.
+2. Hubungkan **Select Columns → Data Table**.
+3. Dataset akan tampil dalam bentuk tabel sehingga bisa melihat isi data.
+
+---
+
+#### 5. Melihat Distribusi Data
+
+1. Tambahkan widget **Distributions**.
+2. Hubungkan **Select Columns → Distributions**.
+3. Grafik distribusi akan menunjukkan penyebaran nilai **math score** dan **reading score**.
+
+---
+
+#### 6. Visualisasi Hubungan Atribut
+
+1. Tambahkan widget **Scatter Plot**.
+2. Hubungkan **Select Columns → Scatter Plot**.
+3. Atur:
+
+   * X : math score
+   * Y : reading score
+   * Color : gender
+
+Tujuannya untuk melihat hubungan nilai matematika dan membaca.
+
+---
+
+#### 7. Menghitung Jarak Data Campuran
+
+Karena dataset memiliki **numerik + kategorikal**, kita dapat menggunakan **Gower Distance**.
+
+Langkah:
+
+1. Tambahkan widget **Distances**.
+2. Hubungkan **Select Columns → Distances**.
+3. Pilih metode **Gower**.
+
+---
+
+#### 8. Clustering Data
+
+1. Tambahkan widget **Hierarchical Clustering**.
+2. Hubungkan **Distances → Hierarchical Clustering**.
+3. Orange akan membuat **dendrogram** untuk melihat kelompok data siswa.
+
+---
+
+#### Alur Workflow Orange
+
+Urutan widget biasanya seperti ini:
+
+```
+File
+  ↓
+Select Columns
+  ↓
+Data Table
+  ↓
+Distributions
+  ↓
+Scatter Plot
+  ↓
+Distances (Gower)
+  ↓
+Hierarchical Clustering
+```
+
+---
+
+✅ Hasil analisis ini bisa digunakan untuk:
+
+* melihat pola nilai siswa
+* membandingkan performa berdasarkan gender atau pendidikan orang tua
+* melakukan clustering siswa berdasarkan kemiripan data
+
+---
+
+## Contoh Tabel Hasil Clustering:
+
+Berikut contoh **output tabel setelah clustering** .
+
+| gender | parental education | lunch        | math score | reading score | Cluster |
+| ------ | ------------------ | ------------ | ---------- | ------------- | ------- |
+| female | bachelor degree    | standard     | 72         | 72            | C1      |
+| female | some college       | standard     | 69         | 90            | C1      |
+| female | master degree      | standard     | 90         | 95            | C1      |
+| male   | associate degree   | free/reduced | 47         | 57            | C3      |
+| male   | some college       | standard     | 76         | 78            | C2      |
+| female | high school        | free/reduced | 45         | 50            | C3      |
+| male   | bachelor degree    | standard     | 88         | 82            | C1      |
+| female | some high school   | free/reduced | 60         | 65            | C2      |
+| male   | high school        | free/reduced | 40         | 43            | C3      |
+| female | associate degree   | standard     | 70         | 72            | C2      |
+
+---
+
+### Interpretasi Clustering
+
+**Cluster 1 (High Performance)**
+
+* nilai math > 80
+* nilai reading > 80
+* mayoritas lunch standard
+
+**Cluster 2 (Medium Performance)**
+
+* nilai sekitar 60–75
+* campuran kategori pendidikan
+
+**Cluster 3 (Low Performance)**
+
+* nilai < 60
+* banyak yang lunch free/reduced
+
+---

@@ -170,7 +170,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Penambangan Data (Data Mining)
+                    Materi perkuliahan - Data mining
                 </a>
             </li>
         </ul>
@@ -366,6 +366,33 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">penjelasan</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-dengan-tipe-data-campuran">1. Mengukur Jarak dengan Tipe Data Campuran</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-sederhana">Rumus sederhana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">contoh sederhana</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-menggunakan-orange-data-mining-untuk-data-campuran">2. Analisis Menggunakan Orange Data Mining untuk Data Campuran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laporan-pengukuran-jarak-pada-data-campuran-menggunakan-orange">Laporan Pengukuran Jarak pada Data Campuran Menggunakan Orange</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data">2. Persiapan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-di-orange">3. Langkah-langkah di Orange</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#download-dataset">1. Download Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-ke-orange">2. Import Data ke Orange</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pilih-5-atribut">3. Pilih 5 Atribut</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melihat-statistik-data">4. Melihat Statistik Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melihat-distribusi-data">5. Melihat Distribusi Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hubungan-atribut">6. Visualisasi Hubungan Atribut</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-data-campuran">7. Menghitung Jarak Data Campuran</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-data">8. Clustering Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow-orange">Alur Workflow Orange</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-tabel-hasil-clustering">Contoh Tabel Hasil Clustering:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-clustering">Interpretasi Clustering</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -512,6 +539,361 @@ https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sh
 <p>Kode tersebut bertujuan untuk melakukan <strong>analisis statistik deskriptif</strong> pada dataset <strong>Iris dataset</strong>, khususnya pada kolom <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code>. Program membaca file CSV, memastikan nama kolom benar, lalu menghitung berbagai ukuran statistik seperti jumlah data, rata-rata, nilai minimum dan maksimum, kuartil (Q1, median, Q3), standar deviasi, variansi, kemencengan (skewness), serta modus. Tujuannya adalah untuk memahami karakteristik, penyebaran, dan bentuk distribusi data sebelum dilakukan analisis lanjutan.</p>
 </section>
 </section>
+<hr class="docutils" />
+<section id="mengukur-jarak-dengan-tipe-data-campuran">
+<h2>1. Mengukur Jarak dengan Tipe Data Campuran<a class="headerlink" href="#mengukur-jarak-dengan-tipe-data-campuran" title="Permalink to this heading">#</a></h2>
+<p>Mengukur jarak pada data dengan tipe campuran (numerik dan kategorikal) dilakukan menggunakan metode yang mampu menangani perbedaan tipe atribut. Salah satu metode yang paling umum digunakan adalah Gower Distance.</p>
+<p>Cara kerja Gower Distance</p>
+<ul class="simple">
+<li><p>Atribut numerik
+Dihitung menggunakan selisih nilai yang dinormalisasi terhadap rentang data.</p></li>
+<li><p>Atribut kategorikal
+Jika kategorinya sama → nilai jarak 0
+Jika berbeda → nilai jarak 1</p></li>
+<li><p>Penggabungan jarak
+Nilai jarak dari setiap atribut kemudian dirata-ratakan untuk mendapatkan jarak total antar dua objek.</p></li>
+</ul>
+<hr class="docutils" />
+<section id="rumus-sederhana">
+<h3>Rumus sederhana<a class="headerlink" href="#rumus-sederhana" title="Permalink to this heading">#</a></h3>
+<p><img alt="grafik" src="_images/campuran.png" /></p>
+<p>keterangan :</p>
+<ul class="simple">
+<li><p>Dij = jarak antara objek i dan j</p></li>
+<li><p>Sijk = jarak pada atribut ke k</p></li>
+<li><p>p = jumlah atribut</p></li>
+</ul>
+</section>
+<section id="contoh-sederhana">
+<h3>contoh sederhana<a class="headerlink" href="#contoh-sederhana" title="Permalink to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Objek</strong></p></th>
+<th class="head"><p><strong>Umur</strong></p></th>
+<th class="head"><p><strong>Gender</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>20</p></td>
+<td><p>Male</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>25</p></td>
+<td><p>Male</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Selisih umur dinormalisasi → nilai jarak numerik</p></li>
+<li><p>Gender sama → jarak = 0</p></li>
+<li><p>Hasil akhir adalah rata-rata dari kedua atribut.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-menggunakan-orange-data-mining-untuk-data-campuran">
+<h2>2. Analisis Menggunakan Orange Data Mining untuk Data Campuran<a class="headerlink" href="#analisis-menggunakan-orange-data-mining-untuk-data-campuran" title="Permalink to this heading">#</a></h2>
+<p>Analisis menggunakan Orange Data Mining untuk data campuran adalah proses menganalisis dataset yang memiliki lebih dari satu tipe data, seperti numerik (angka) dan kategorikal (teks/kategori), dengan memanfaatkan fitur visual workflow pada software Orange Data Mining.</p>
+<p>Dalam Orange, data campuran dapat dianalisis melalui beberapa tahapan utama:</p>
+<ol class="arabic simple">
+<li><p>Import Data
+Dataset dimasukkan menggunakan widget File. Data dapat berupa CSV, Excel, atau format lain yang berisi atribut numerik dan kategorikal.</p></li>
+<li><p>Preprocessing Data
+Data dibersihkan dan disiapkan menggunakan widget seperti Select Columns, Edit Domain, atau Impute untuk menangani missing value dan menentukan tipe variabel.</p></li>
+<li><p>Eksplorasi Data
+Visualisasi dilakukan untuk memahami pola data menggunakan widget seperti Scatter Plot, Box Plot, atau Distributions.</p></li>
+<li><p>Analisis atau Pemodelan
+Data campuran dapat digunakan dalam berbagai metode analisis, misalnya:</p>
+<ul class="simple">
+<li><p>Clustering (K-Means, Hierarchical Clustering)</p></li>
+<li><p>Classification (Decision Tree, Random Forest, Logistic Regression)</p></li>
+<li><p>Association Rules</p></li>
+</ul>
+</li>
+<li><p>Evaluasi Model
+Hasil model dievaluasi menggunakan widget seperti Test &amp; Score, yang menampilkan metrik seperti accuracy, precision, dan recall.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="laporan-pengukuran-jarak-pada-data-campuran-menggunakan-orange">
+<h2>Laporan Pengukuran Jarak pada Data Campuran Menggunakan Orange<a class="headerlink" href="#laporan-pengukuran-jarak-pada-data-campuran-menggunakan-orange" title="Permalink to this heading">#</a></h2>
+<section id="pendahuluan">
+<h3>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Permalink to this heading">#</a></h3>
+<p>Dataset ini berisi data performa siswa dengan kombinasi atribut kategorikal dan numerik seperti gender, pendidikan orang tua, dan nilai ujian.</p>
+</section>
+<section id="persiapan-data">
+<h3>2. Persiapan Data<a class="headerlink" href="#persiapan-data" title="Permalink to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>gender</p></th>
+<th class="head"><p>parental education</p></th>
+<th class="head"><p>lunch</p></th>
+<th class="head"><p>math score</p></th>
+<th class="head"><p>reading score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>female</p></td>
+<td><p>bachelor’s degree</p></td>
+<td><p>standard</p></td>
+<td><p>72</p></td>
+<td><p>72</p></td>
+</tr>
+<tr class="row-odd"><td><p>male</p></td>
+<td><p>some college</p></td>
+<td><p>free/reduced</p></td>
+<td><p>47</p></td>
+<td><p>57</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>gender → kategorikal</p></li>
+<li><p>parental level of education → kategorikal</p></li>
+<li><p>lunch → kategorikal</p></li>
+<li><p>math score → numerik</p></li>
+<li><p>reading score → numerik</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="langkah-langkah-di-orange">
+<h3>3. Langkah-langkah di Orange<a class="headerlink" href="#langkah-langkah-di-orange" title="Permalink to this heading">#</a></h3>
+<p>Berikut <strong>langkah-langkah analisis di Orange menggunakan dataset Student Performance</strong></p>
+<p>Dataset Kaggle:
+<a class="reference external" href="https://www.kaggle.com/datasets/spscientist/students-performance-in-exams">https://www.kaggle.com/datasets/spscientist/students-performance-in-exams</a></p>
+<hr class="docutils" />
+<section id="download-dataset">
+<h4>1. Download Dataset<a class="headerlink" href="#download-dataset" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Buka link Kaggle di atas.</p></li>
+<li><p>Klik <strong>Download</strong>.</p></li>
+<li><p>Ekstrak file hingga mendapatkan <strong>StudentsPerformance.csv</strong>.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="import-data-ke-orange">
+<h4>2. Import Data ke Orange<a class="headerlink" href="#import-data-ke-orange" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Buka <strong>Orange Data Mining</strong>.</p></li>
+<li><p>Tarik widget <strong>File</strong> ke workspace.</p></li>
+<li><p>Klik <strong>File → Browse</strong>.</p></li>
+<li><p>Pilih file <strong>StudentsPerformance.csv</strong>.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="pilih-5-atribut">
+<h4>3. Pilih 5 Atribut<a class="headerlink" href="#pilih-5-atribut" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Tambahkan widget <strong>Select Columns</strong>.</p></li>
+<li><p>Hubungkan <strong>File → Select Columns</strong>.</p></li>
+<li><p>Pilih atribut berikut:</p>
+<ul class="simple">
+<li><p>gender</p></li>
+<li><p>parental level of education</p></li>
+<li><p>lunch</p></li>
+<li><p>math score</p></li>
+<li><p>reading score</p></li>
+</ul>
+</li>
+</ol>
+<p>Atribut lain bisa dipindahkan ke <strong>Ignore</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="melihat-statistik-data">
+<h4>4. Melihat Statistik Data<a class="headerlink" href="#melihat-statistik-data" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Tambahkan widget <strong>Data Table</strong>.</p></li>
+<li><p>Hubungkan <strong>Select Columns → Data Table</strong>.</p></li>
+<li><p>Dataset akan tampil dalam bentuk tabel sehingga bisa melihat isi data.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="melihat-distribusi-data">
+<h4>5. Melihat Distribusi Data<a class="headerlink" href="#melihat-distribusi-data" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Tambahkan widget <strong>Distributions</strong>.</p></li>
+<li><p>Hubungkan <strong>Select Columns → Distributions</strong>.</p></li>
+<li><p>Grafik distribusi akan menunjukkan penyebaran nilai <strong>math score</strong> dan <strong>reading score</strong>.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="visualisasi-hubungan-atribut">
+<h4>6. Visualisasi Hubungan Atribut<a class="headerlink" href="#visualisasi-hubungan-atribut" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Tambahkan widget <strong>Scatter Plot</strong>.</p></li>
+<li><p>Hubungkan <strong>Select Columns → Scatter Plot</strong>.</p></li>
+<li><p>Atur:</p>
+<ul class="simple">
+<li><p>X : math score</p></li>
+<li><p>Y : reading score</p></li>
+<li><p>Color : gender</p></li>
+</ul>
+</li>
+</ol>
+<p>Tujuannya untuk melihat hubungan nilai matematika dan membaca.</p>
+</section>
+<hr class="docutils" />
+<section id="menghitung-jarak-data-campuran">
+<h4>7. Menghitung Jarak Data Campuran<a class="headerlink" href="#menghitung-jarak-data-campuran" title="Permalink to this heading">#</a></h4>
+<p>Karena dataset memiliki <strong>numerik + kategorikal</strong>, kita dapat menggunakan <strong>Gower Distance</strong>.</p>
+<p>Langkah:</p>
+<ol class="arabic simple">
+<li><p>Tambahkan widget <strong>Distances</strong>.</p></li>
+<li><p>Hubungkan <strong>Select Columns → Distances</strong>.</p></li>
+<li><p>Pilih metode <strong>Gower</strong>.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="clustering-data">
+<h4>8. Clustering Data<a class="headerlink" href="#clustering-data" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Tambahkan widget <strong>Hierarchical Clustering</strong>.</p></li>
+<li><p>Hubungkan <strong>Distances → Hierarchical Clustering</strong>.</p></li>
+<li><p>Orange akan membuat <strong>dendrogram</strong> untuk melihat kelompok data siswa.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="alur-workflow-orange">
+<h4>Alur Workflow Orange<a class="headerlink" href="#alur-workflow-orange" title="Permalink to this heading">#</a></h4>
+<p>Urutan widget biasanya seperti ini:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>File
+  ↓
+Select Columns
+  ↓
+Data Table
+  ↓
+Distributions
+  ↓
+Scatter Plot
+  ↓
+Distances (Gower)
+  ↓
+Hierarchical Clustering
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>✅ Hasil analisis ini bisa digunakan untuk:</p>
+<ul class="simple">
+<li><p>melihat pola nilai siswa</p></li>
+<li><p>membandingkan performa berdasarkan gender atau pendidikan orang tua</p></li>
+<li><p>melakukan clustering siswa berdasarkan kemiripan data</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="contoh-tabel-hasil-clustering">
+<h2>Contoh Tabel Hasil Clustering:<a class="headerlink" href="#contoh-tabel-hasil-clustering" title="Permalink to this heading">#</a></h2>
+<p>Berikut contoh <strong>output tabel setelah clustering</strong> .</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>gender</p></th>
+<th class="head"><p>parental education</p></th>
+<th class="head"><p>lunch</p></th>
+<th class="head"><p>math score</p></th>
+<th class="head"><p>reading score</p></th>
+<th class="head"><p>Cluster</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>female</p></td>
+<td><p>bachelor degree</p></td>
+<td><p>standard</p></td>
+<td><p>72</p></td>
+<td><p>72</p></td>
+<td><p>C1</p></td>
+</tr>
+<tr class="row-odd"><td><p>female</p></td>
+<td><p>some college</p></td>
+<td><p>standard</p></td>
+<td><p>69</p></td>
+<td><p>90</p></td>
+<td><p>C1</p></td>
+</tr>
+<tr class="row-even"><td><p>female</p></td>
+<td><p>master degree</p></td>
+<td><p>standard</p></td>
+<td><p>90</p></td>
+<td><p>95</p></td>
+<td><p>C1</p></td>
+</tr>
+<tr class="row-odd"><td><p>male</p></td>
+<td><p>associate degree</p></td>
+<td><p>free/reduced</p></td>
+<td><p>47</p></td>
+<td><p>57</p></td>
+<td><p>C3</p></td>
+</tr>
+<tr class="row-even"><td><p>male</p></td>
+<td><p>some college</p></td>
+<td><p>standard</p></td>
+<td><p>76</p></td>
+<td><p>78</p></td>
+<td><p>C2</p></td>
+</tr>
+<tr class="row-odd"><td><p>female</p></td>
+<td><p>high school</p></td>
+<td><p>free/reduced</p></td>
+<td><p>45</p></td>
+<td><p>50</p></td>
+<td><p>C3</p></td>
+</tr>
+<tr class="row-even"><td><p>male</p></td>
+<td><p>bachelor degree</p></td>
+<td><p>standard</p></td>
+<td><p>88</p></td>
+<td><p>82</p></td>
+<td><p>C1</p></td>
+</tr>
+<tr class="row-odd"><td><p>female</p></td>
+<td><p>some high school</p></td>
+<td><p>free/reduced</p></td>
+<td><p>60</p></td>
+<td><p>65</p></td>
+<td><p>C2</p></td>
+</tr>
+<tr class="row-even"><td><p>male</p></td>
+<td><p>high school</p></td>
+<td><p>free/reduced</p></td>
+<td><p>40</p></td>
+<td><p>43</p></td>
+<td><p>C3</p></td>
+</tr>
+<tr class="row-odd"><td><p>female</p></td>
+<td><p>associate degree</p></td>
+<td><p>standard</p></td>
+<td><p>70</p></td>
+<td><p>72</p></td>
+<td><p>C2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<section id="interpretasi-clustering">
+<h3>Interpretasi Clustering<a class="headerlink" href="#interpretasi-clustering" title="Permalink to this heading">#</a></h3>
+<p><strong>Cluster 1 (High Performance)</strong></p>
+<ul class="simple">
+<li><p>nilai math &gt; 80</p></li>
+<li><p>nilai reading &gt; 80</p></li>
+<li><p>mayoritas lunch standard</p></li>
+</ul>
+<p><strong>Cluster 2 (Medium Performance)</strong></p>
+<ul class="simple">
+<li><p>nilai sekitar 60–75</p></li>
+<li><p>campuran kategori pendidikan</p></li>
+</ul>
+<p><strong>Cluster 3 (Low Performance)</strong></p>
+<ul class="simple">
+<li><p>nilai &lt; 60</p></li>
+<li><p>banyak yang lunch free/reduced</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -611,6 +993,33 @@ https://colab.research.google.com/drive/1NAN3PQ3Xz_5hnnYu9vBmqvBksbWDerp4?usp=sh
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link">Link</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-dengan-tipe-data-campuran">1. Mengukur Jarak dengan Tipe Data Campuran</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-sederhana">Rumus sederhana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">contoh sederhana</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-menggunakan-orange-data-mining-untuk-data-campuran">2. Analisis Menggunakan Orange Data Mining untuk Data Campuran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laporan-pengukuran-jarak-pada-data-campuran-menggunakan-orange">Laporan Pengukuran Jarak pada Data Campuran Menggunakan Orange</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data">2. Persiapan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-di-orange">3. Langkah-langkah di Orange</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#download-dataset">1. Download Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-ke-orange">2. Import Data ke Orange</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pilih-5-atribut">3. Pilih 5 Atribut</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melihat-statistik-data">4. Melihat Statistik Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#melihat-distribusi-data">5. Melihat Distribusi Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hubungan-atribut">6. Visualisasi Hubungan Atribut</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-data-campuran">7. Menghitung Jarak Data Campuran</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-data">8. Clustering Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow-orange">Alur Workflow Orange</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-tabel-hasil-clustering">Contoh Tabel Hasil Clustering:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-clustering">Interpretasi Clustering</a></li>
 </ul>
 </li>
 </ul>
