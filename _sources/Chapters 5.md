@@ -208,7 +208,7 @@ Dataset Excel ini memiliki anomali/kontradiksi (Baris 1 dan 4 datanya sama persi
 ---
 ### kode untuk menghitung Missing values
 
-```sql
+```python
 import math
 
 # 1. Menyiapkan Data Latih (Baris 1 - 6) berdasarkan hasil normalisasi
