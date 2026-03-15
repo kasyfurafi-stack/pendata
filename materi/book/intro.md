@@ -1,4 +1,4 @@
-# Materi perkuliahan - Data mining
+# Materi perkuliahan 
 ## Tentang Saya
 
 

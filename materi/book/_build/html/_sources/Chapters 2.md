@@ -1,5 +1,6 @@
 # Memahami Data
 
+---
 ## Tujuan pembelajaran
    1. Mahasiswa dapat memahami konsep data mining
    2. Mahasiswa dapat mengetahui proses data mining

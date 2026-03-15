@@ -1,7 +1,6 @@
 # Mengukur Jarak/Similaritas Data
 
 ---
-## Prepocessing 
 ## Normalisasi data 
 Normalisasi data adalah teknik pra-pemrosesan yang sangat penting dalam *data mining* dan *machine learning*. Tujuannya adalah menyamakan skala seluruh variabel/fitur agar tidak ada satu atribut pun yang mendominasi atribut lain hanya karena memiliki rentang angka yang lebih besar (misalnya, membandingkan atribut "gaji" dalam jutaan dengan "umur" dalam puluhan).
 
