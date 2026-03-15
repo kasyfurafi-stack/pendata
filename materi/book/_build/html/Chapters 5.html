@@ -179,7 +179,6 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapters%201.html">Pengantar Data Mining</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%202.html">Memahami Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapters%203.html">Pengantar Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%204.html">Distribusi &amp; Statistik Deskriptif</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Mengukur Jarak/Similaritas Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%206.html">Praproses Data</a></li>
@@ -355,8 +354,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dengan-sklearn-dan-fungsi-kustom">Implementasi dengan Sklearn dan Fungsi Kustom</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-missing-values">Tugas - Missing Values</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transkripsi-data">1. Transkripsi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-proses-yang-sedang-terjadi">2. Penjelasan Proses yang Sedang Terjadi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-nilai-tanda-tanya-dengan-wknn">3. Mencari Nilai Tanda Tanya (?) dengan WKNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-nilai-tanda-tanya-dengan-wknn">2. Mencari Nilai Tanda Tanya (?) dengan WKNN</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-untuk-menghitung-missing-values">kode untuk menghitung Missing values</a></li>
 </ul>
 </li>
@@ -383,6 +381,7 @@ document.write(`
 <section id="normalisasi-data">
 <h2>Normalisasi data<a class="headerlink" href="#normalisasi-data" title="Permalink to this heading">#</a></h2>
 <p>Normalisasi data adalah teknik pra-pemrosesan yang sangat penting dalam <em>data mining</em> dan <em>machine learning</em>. Tujuannya adalah menyamakan skala seluruh variabel/fitur agar tidak ada satu atribut pun yang mendominasi atribut lain hanya karena memiliki rentang angka yang lebih besar (misalnya, membandingkan atribut “gaji” dalam jutaan dengan “umur” dalam puluhan).</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Misal</span> <span class="pre">kita</span> <span class="pre">punya</span> <span class="pre">array</span> <span class="pre">data:</span> <span class="pre">X</span> <span class="pre">=</span> <span class="pre">[10,</span> <span class="pre">20,</span> <span class="pre">30,</span> <span class="pre">40,</span> <span class="pre">50]</span></code></strong></p>
 <p>Berikut adalah macam-macam teknik normalisasi data yang paling sering digunakan:</p>
 <hr class="docutils" />
 <section id="min-max-normalization-rescaling">
@@ -395,7 +394,6 @@ document.write(`
 </ul>
 <div class="math notranslate nohighlight">
 \[x_{norm} = \frac{x - x_{min}}{x_{max} - x_{min}}\]</div>
-<p>Misal kita punya array data: <strong><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">[10,</span> <span class="pre">20,</span> <span class="pre">30,</span> <span class="pre">40,</span> <span class="pre">50]</span></code></strong></p>
 <section id="contoh">
 <h4>Contoh :<a class="headerlink" href="#contoh" title="Permalink to this heading">#</a></h4>
 <p>Mengubah skala data agar masuk ke dalam rentang 0 sampai 1.</p>
@@ -433,6 +431,34 @@ $<span class="math notranslate nohighlight">\(X_{norm} = \frac{X - X_{min}}{X_{m
 $<span class="math notranslate nohighlight">\(X_{norm} = \frac{X - \mu}{\sigma}\)</span>$</p></li>
 <li><p><strong>Data kita:</strong> * Rata-rata (<span class="math notranslate nohighlight">\(\mu\)</span>) = <span class="math notranslate nohighlight">\(30\)</span></p></li>
 <li><p>Standar deviasi populasi (<span class="math notranslate nohighlight">\(\sigma\)</span>) <span class="math notranslate nohighlight">\(\approx 14.14\)</span></p></li>
+</ul>
+<p>Angka <strong>14.14</strong> itu dapet dari hasil perhitungan <strong>Standar Deviasi Populasi (<span class="math notranslate nohighlight">\(\sigma\)</span>)</strong> dari data array <code class="docutils literal notranslate"><span class="pre">[10,</span> <span class="pre">20,</span> <span class="pre">30,</span> <span class="pre">40,</span> <span class="pre">50]</span></code>.</p>
+<p>Secara matematis, standar deviasi itu ngukur seberapa jauh data-data kita menyimpang dari rata-ratanya. Rumusnya:</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \sqrt{\frac{\sum (X - \mu)^2}{N}}\]</div>
+<p>proses hitung manualnya step-by-step:</p>
+<ol class="arabic simple">
+<li><p><strong>Rata-rata (<span class="math notranslate nohighlight">\(\mu\)</span>):</strong> <span class="math notranslate nohighlight">\((10+20+30+40+50) / 5 = 30\)</span></p></li>
+<li><p><strong>Kurangi tiap data dengan rata-rata, lalu kuadratkan nilainya <span class="math notranslate nohighlight">\((X - \mu)^2\)</span>:</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((10 - 30)^2 = (-20)^2 = 400\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((20 - 30)^2 = (-10)^2 = 100\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((30 - 30)^2 = 0^2 = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((40 - 30)^2 = 10^2 = 100\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((50 - 30)^2 = 20^2 = 400\)</span></p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p><strong>Jumlahkan semua hasil kuadrat tadi, lalu bagi dengan jumlah data (<span class="math notranslate nohighlight">\(N = 5\)</span>) untuk dapet nilai <em>Varians</em>:</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((400 + 100 + 0 + 100 + 400) / 5 = 1000 / 5 = 200\)</span></p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p><strong>Akar kuadratkan nilai <em>Varians</em> tersebut buat dapet Standar Deviasi:</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sqrt{200} = 14.1421356...\)</span> (kita bulatkan jadi <strong>14.14</strong>)</p></li>
 <li><p><strong>Contoh hitung (untuk nilai 40):</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -531,7 +557,7 @@ $<span class="math notranslate nohighlight">\(X_{norm} = \frac{X}{10^j}\)</span>
 <th class="head"><p></p></th>
 <th class="head"><p>IPK Norm</p></th>
 <th class="head"><p>PO Norm</p></th>
-<th class="head"><p>JMK Norm</p></th>
+<th class="head"><p>JML Norm</p></th>
 <th class="head"><p>WKNN</p></th>
 </tr>
 </thead>
@@ -611,17 +637,8 @@ $<span class="math notranslate nohighlight">\(X_{norm} = \frac{X}{10^j}\)</span>
 </div>
 </section>
 <hr class="docutils" />
-<section id="penjelasan-proses-yang-sedang-terjadi">
-<h3>2. Penjelasan Proses yang Sedang Terjadi<a class="headerlink" href="#penjelasan-proses-yang-sedang-terjadi" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Min-Max Normalization:</strong> Data asli (IPK rentang 2–4, PO rentang 200000–400000) diubah menjadi skala 0 hingga 1 agar atribut PO yang angkanya ratusan ribu tidak mendominasi perhitungan jarak.</p></li>
-<li><p><strong>Encoding Target:</strong> Kolom kelas target <code class="docutils literal notranslate"><span class="pre">JML</span></code> (berisi angka 2 dan 3) diubah menjadi biner <code class="docutils literal notranslate"><span class="pre">JMK</span></code> (angka 0 dan 1) untuk mempermudah perhitungan model.</p></li>
-<li><p><strong>Tujuan:</strong> Anda diminta untuk memprediksi nilai target <code class="docutils literal notranslate"><span class="pre">?</span></code> pada baris ke-7 menggunakan data latih dari baris 1 sampai 6.</p></li>
-</ul>
-</section>
-<hr class="docutils" />
 <section id="mencari-nilai-tanda-tanya-dengan-wknn">
-<h3>3. Mencari Nilai Tanda Tanya (?) dengan WKNN<a class="headerlink" href="#mencari-nilai-tanda-tanya-dengan-wknn" title="Permalink to this heading">#</a></h3>
+<h3>2. Mencari Nilai Tanda Tanya (?) dengan WKNN<a class="headerlink" href="#mencari-nilai-tanda-tanya-dengan-wknn" title="Permalink to this heading">#</a></h3>
 <p>Untuk memprediksi kelas baris ke-7 dengan data yang sudah dinormalisasi <code class="docutils literal notranslate"><span class="pre">(IPK</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">PO</span> <span class="pre">=</span> <span class="pre">0.5)</span></code>, kita harus menghitung jarak <em>Euclidean</em> dari data target ini ke semua data latih (baris 1-6).</p>
 <p>Rumus jarak Euclidean:</p>
 <div class="math notranslate nohighlight">
@@ -806,8 +823,7 @@ Dataset Excel ini memiliki anomali/kontradiksi (Baris 1 dan 4 datanya sama persi
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dengan-sklearn-dan-fungsi-kustom">Implementasi dengan Sklearn dan Fungsi Kustom</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-missing-values">Tugas - Missing Values</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transkripsi-data">1. Transkripsi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-proses-yang-sedang-terjadi">2. Penjelasan Proses yang Sedang Terjadi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-nilai-tanda-tanya-dengan-wknn">3. Mencari Nilai Tanda Tanya (?) dengan WKNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-nilai-tanda-tanya-dengan-wknn">2. Mencari Nilai Tanda Tanya (?) dengan WKNN</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-untuk-menghitung-missing-values">kode untuk menghitung Missing values</a></li>
 </ul>
 </li>
