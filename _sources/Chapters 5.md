@@ -10,6 +10,8 @@
 ## Normalisasi data 
 Normalisasi data adalah teknik pra-pemrosesan yang sangat penting dalam *data mining* dan *machine learning*. Tujuannya adalah menyamakan skala seluruh variabel/fitur agar tidak ada satu atribut pun yang mendominasi atribut lain hanya karena memiliki rentang angka yang lebih besar (misalnya, membandingkan atribut "gaji" dalam jutaan dengan "umur" dalam puluhan).
 
+**`Misal kita punya array data: X = [10, 20, 30, 40, 50]`**
+
 Berikut adalah macam-macam teknik normalisasi data yang paling sering digunakan:
 
 ---
@@ -23,7 +25,6 @@ Teknik ini mengubah ukuran data sehingga jatuh pada rentang nilai tertentu, pali
 
 $$x_{norm} = \frac{x - x_{min}}{x_{max} - x_{min}}$$
 
-Misal kita punya array data: **`X = [10, 20, 30, 40, 50]`**
 
 #### Contoh : 
 
@@ -65,6 +66,33 @@ $$X_{norm} = \frac{X - \mu}{\sigma}$$
 
 * **Data kita:** * Rata-rata ($\mu$) = $30$
 * Standar deviasi populasi ($\sigma$) $\approx 14.14$
+
+Angka **14.14** itu dapet dari hasil perhitungan **Standar Deviasi Populasi ($\sigma$)** dari data array `[10, 20, 30, 40, 50]`.
+
+Secara matematis, standar deviasi itu ngukur seberapa jauh data-data kita menyimpang dari rata-ratanya. Rumusnya:
+
+
+$$\sigma = \sqrt{\frac{\sum (X - \mu)^2}{N}}$$
+
+proses hitung manualnya step-by-step:
+
+1. **Rata-rata ($\mu$):** $(10+20+30+40+50) / 5 = 30$
+2. **Kurangi tiap data dengan rata-rata, lalu kuadratkan nilainya $(X - \mu)^2$:**
+* $(10 - 30)^2 = (-20)^2 = 400$
+* $(20 - 30)^2 = (-10)^2 = 100$
+* $(30 - 30)^2 = 0^2 = 0$
+* $(40 - 30)^2 = 10^2 = 100$
+* $(50 - 30)^2 = 20^2 = 400$
+
+
+3. **Jumlahkan semua hasil kuadrat tadi, lalu bagi dengan jumlah data ($N = 5$) untuk dapet nilai *Varians*:**
+* $(400 + 100 + 0 + 100 + 400) / 5 = 1000 / 5 = 200$
+
+
+4. **Akar kuadratkan nilai *Varians* tersebut buat dapet Standar Deviasi:**
+* $\sqrt{200} = 14.1421356...$ (kita bulatkan jadi **14.14**)
+
+
 
 
 * **Contoh hitung (untuk nilai 40):**
@@ -156,27 +184,20 @@ Berikut adalah transkripsi ulang dari data yang ada di foto Anda, beserta penjel
 
 **Tabel Data Asli (Kiri) & Data Normalisasi (Kanan)**
 
-| No  | IPK Asli | PO Asli | JML Asli |     | IPK Norm | PO Norm | JMK Norm | WKNN |
-| --- | ---      | ---     | ---      | --- | ---       | --- | --- | --- |
-| 1   | 2        | 200000  | 2        |     | 0         | 0 | 0 |  |
-| 2   | 3        | 300000  | 3        |     | 0.5       | 0.5 | 1 |  |
-| 3   | 4        | 200000  | 2        |     | 1         | 0 | 0 |  |
-| 4   | 2        | 200000  | 3        |     | 0         | 0 | 1 |  |
-| 5   | 3        | 300000  | 2        |     | 0.5       | 0.5 | 0 |  |
-| 6   | 4        | 400000  | 3        |     | 1         | 1 | 1 |  |
+| No  | IPK Asli | PO Asli | JML Asli |     | IPK Norm | PO Norm | JML Norm | WKNN |
+| --- | ---      | ---     | ---      | --- | ---       | ---      | --- | --- |
+| 1   | 2        | 200000  | 2        |     | 0         | 0        | 0      |  |
+| 2   | 3        | 300000  | 3        |     | 0.5       | 0.5      | 1      |  |
+| 3   | 4        | 200000  | 2        |     | 1         | 0         | 0     |  |
+| 4   | 2        | 200000  | 3        |     | 0         | 0         | 1     |  |
+| 5   | 3        | 300000  | 2        |     | 0.5       | 0.5       | 0     |  |
+| 6   | 4        | 400000  | 3        |     | 1         | 1         | 1     |  |
 |**7**| **2**    |**300000**| **?**   |     | **0**     | **0.5** | **?** |  |
 
 ---
 
-### 2. Penjelasan Proses yang Sedang Terjadi
- 
-* **Min-Max Normalization:** Data asli (IPK rentang 2–4, PO rentang 200000–400000) diubah menjadi skala 0 hingga 1 agar atribut PO yang angkanya ratusan ribu tidak mendominasi perhitungan jarak.
-* **Encoding Target:** Kolom kelas target `JML` (berisi angka 2 dan 3) diubah menjadi biner `JMK` (angka 0 dan 1) untuk mempermudah perhitungan model.
-* **Tujuan:** Anda diminta untuk memprediksi nilai target `?` pada baris ke-7 menggunakan data latih dari baris 1 sampai 6.
 
----
-
-### 3. Mencari Nilai Tanda Tanya (?) dengan WKNN
+### 2. Mencari Nilai Tanda Tanya (?) dengan WKNN
 
 Untuk memprediksi kelas baris ke-7 dengan data yang sudah dinormalisasi `(IPK = 0, PO = 0.5)`, kita harus menghitung jarak *Euclidean* dari data target ini ke semua data latih (baris 1-6).
 
