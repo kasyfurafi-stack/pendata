@@ -624,34 +624,35 @@ document.write(`
 <section id="melakukan-analisis-data-menggunakan-k-nearest-neighbors-knn">
 <h2>Melakukan analisis data menggunakan K-Nearest Neighbors (KNN)<a class="headerlink" href="#melakukan-analisis-data-menggunakan-k-nearest-neighbors-knn" title="Permalink to this heading">#</a></h2>
 <p>Berikut adalah urutan kerja (workflow)  untuk menyelesaikan tugas Analisis Kesuburan Tanah :</p>
+<p><img alt="Grafik" src="_images/workflow-c4.png" /></p>
 <ul class="simple">
-<li><p><strong>Tahap 1 &amp; 2</strong>: Menjawab tuntutan “Lakukan Pemrosesan Data” (menggunakan node CSV Reader, Column Filter, Missing Value, Category to Number, Normalizer).</p></li>
-<li><p><strong>Tahap 3</strong>: Menjawab tuntutan “Lakukan analisis data dengan KNN” (menggunakan node Partitioning dan K Nearest Neighbor).</p></li>
-<li><p><strong>Tahap 4</strong>: Menjawab tuntutan “Hitung Metrik Evaluasi” (menggunakan node Scorer).</p></li>
+<li><p><strong>Tahap 1 &amp; 2</strong>: penyelesaian “Lakukan Pemrosesan Data” (menggunakan node CSV Reader, Column Filter, Missing Value, Category to Number, Normalizer).</p></li>
+<li><p><strong>Tahap 3</strong>: penyelesaian “Lakukan analisis data dengan KNN” (menggunakan node Partitioning dan K Nearest Neighbor).</p></li>
+<li><p><strong>Tahap 4</strong>: penyelesaian “Hitung Metrik Evaluasi” (menggunakan node Scorer).</p></li>
 </ul>
 <section id="tahap-1-memasukkan-dan-membersihkan-data">
 <h3>Tahap 1: Memasukkan dan Membersihkan Data<a class="headerlink" href="#tahap-1-memasukkan-dan-membersihkan-data" title="Permalink to this heading">#</a></h3>
 <section id="csv-reader">
 <h4>1. CSV Reader<a class="headerlink" href="#csv-reader" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: Untuk membaca file data Anda.</p></li>
-<li><p>Cara setting: Klik kanan -&gt; Configure. Browse dan pilih file dataset_kesuburan_tanah_missing.xlsx - Dataset.csv. Pastikan datanya terbaca rapi di kotak preview bawah, lalu klik OK.</p></li>
+<li><p><strong>Fungsi</strong>: Untuk membaca file data .</p></li>
+<li><p><strong>Cara setting</strong>: Klik kanan -&gt; Configure. Browse dan pilih file dataset_kesuburan_tanah_missing.xlsx - Dataset.csv. Pastikan datanya terbaca rapi di kotak preview bawah, lalu klik OK.</p></li>
 </ul>
 <p>Klik kanan -&gt; Execute.</p>
 </section>
 <section id="column-filter">
 <h4>2. Column Filter<a class="headerlink" href="#column-filter" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: Untuk membuang kolom ID karena tidak ada hubungannya dengan kesuburan tanah dan akan merusak perhitungan jarak KNN.</p></li>
-<li><p>Cara setting: Hubungkan dari CSV Reader. Klik kanan -&gt; Configure. Pindahkan kolom ID ke kotak kiri (Exclude), sisanya biarkan di kotak kanan (Include).</p></li>
+<li><p><strong>Fungsi</strong>: Untuk membuang kolom ID karena tidak ada hubungannya dengan kesuburan tanah dan akan merusak perhitungan jarak KNN.</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari CSV Reader. Klik kanan -&gt; Configure. Pindahkan kolom ID ke kotak kiri (Exclude), sisanya biarkan di kotak kanan (Include).</p></li>
 </ul>
 <p>Klik kanan -&gt; Execute.</p>
 </section>
 <section id="missing-value">
 <h4>3. Missing Value<a class="headerlink" href="#missing-value" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: Untuk mengisi data yang kosong (berisi tanda ? merah di KNIME).</p></li>
-<li><p>Cara setting: Hubungkan dari Column Filter. Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Fungsi</strong>: Untuk mengisi data yang kosong (berisi tanda ? merah di KNIME).</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari Column Filter. Klik kanan -&gt; Configure.</p></li>
 </ul>
 <p>Di tab Default, atur kolom Number (double/integer) menjadi Median.</p>
 <p>Atur kolom String menjadi Most Frequent Value (untuk mengisi kolom Tekstur Tanah yang kosong dengan nilai modus).</p>
@@ -663,16 +664,16 @@ document.write(`
 <section id="category-to-number">
 <h4>4. Category To Number<a class="headerlink" href="#category-to-number" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: KNN adalah algoritma matematika yang menghitung jarak, jadi teks seperti “Lempung” atau “Pasir” di kolom Tekstur Tanah harus diubah jadi angka.</p></li>
-<li><p>Cara setting: Hubungkan dari Missing Value. Klik kanan -&gt; Configure. Masukkan kolom Tekstur Tanah ke kotak Include. (Catatan: Jangan masukkan kolom Label Subur/Tidak Subur ke sini, biarkan Label tetap berbentuk teks).</p></li>
+<li><p><strong>Fungsi</strong>: KNN adalah algoritma matematika yang menghitung jarak, jadi teks seperti “Lempung” atau “Pasir” di kolom Tekstur Tanah harus diubah jadi angka.</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari Missing Value. Klik kanan -&gt; Configure. Masukkan kolom Tekstur Tanah ke kotak Include. (Catatan: Jangan masukkan kolom Label Subur/Tidak Subur ke sini, biarkan Label tetap berbentuk teks).</p></li>
 </ul>
 <p>Klik kanan -&gt; Execute.</p>
 </section>
 <section id="normalizer">
 <h4>5. Normalizer<a class="headerlink" href="#normalizer" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: Menyamakan skala angka (seperti yang kita bahas di Min-Max / Z-Score).</p></li>
-<li><p>Cara setting: Hubungkan dari Category To Number. Klik kanan -&gt; Configure. Pilih semua fitur numerik. Di bagian bawah, pilih Z-Score Normalization (Standardization) atau Min-Max Normalization (0 to 1). Keduanya bagus untuk KNN.</p></li>
+<li><p><strong>Fungsi</strong>: Menyamakan skala angka .</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari Category To Number. Klik kanan -&gt; Configure. Pilih semua fitur numerik. Di bagian bawah, pilih Z-Score Normalization (Standardization) atau Min-Max Normalization (0 to 1). Keduanya bagus untuk KNN.</p></li>
 </ul>
 <p>Klik kanan -&gt; Execute.</p>
 </section>
@@ -682,8 +683,8 @@ document.write(`
 <section id="partitioning">
 <h4>6. Partitioning<a class="headerlink" href="#partitioning" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: Membagi data menjadi 80% Data Latih (Train) dan 20% Data Uji (Test).</p></li>
-<li><p>Cara setting: Hubungkan dari Normalizer. Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Fungsi</strong>: Membagi data menjadi 80% Data Latih (Train) dan 20% Data Uji (Test).</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari Normalizer. Klik kanan -&gt; Configure.</p></li>
 </ul>
 <p>Di opsi Relative [%], isi 80.</p>
 <p>Centang kotak Stratified sampling, lalu pilih kolom Label. Ini memastikan porsi Subur dan Tidak Subur dibagi sama rata di data latih dan uji.</p>
@@ -692,9 +693,9 @@ document.write(`
 <section id="k-nearest-neighbor">
 <h4>7. K Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: Ini adalah algoritma prediksinya.</p></li>
-<li><p>Cara menghubungkan: Tarik garis dari output atas Partitioning (data latih) ke input atas node KNN. Lalu tarik garis dari output bawah Partitioning (data uji) ke input bawah node KNN.</p></li>
-<li><p>Cara setting: Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Fungsi</strong>: Ini adalah algoritma prediksinya.</p></li>
+<li><p><strong>Cara menghubungkan</strong>: Tarik garis dari output atas Partitioning (data latih) ke input atas node KNN. Lalu tarik garis dari output bawah Partitioning (data uji) ke input bawah node KNN.</p></li>
+<li><p><strong>Cara setting</strong>: Klik kanan -&gt; Configure.</p></li>
 </ul>
 <p>Number of neighbors (k): Isi 5 (atau angka ganjil lain seperti 3 atau 7).</p>
 <p>Class column: Pilih Label (karena ini yang mau kita tebak).</p>
@@ -706,8 +707,8 @@ document.write(`
 <section id="scorer">
 <h4>8. Scorer<a class="headerlink" href="#scorer" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Fungsi: Untuk memunculkan nilai Accuracy, Precision, Recall, dan F1-Score sesuai permintaan tugas Anda.</p></li>
-<li><p>Cara setting: Hubungkan dari K Nearest Neighbor. Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Fungsi</strong>: Untuk memunculkan nilai Accuracy, Precision, Recall, dan F1-Score</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari K Nearest Neighbor. Klik kanan -&gt; Configure.</p></li>
 </ul>
 <p>First column: Pilih Label (ini kunci jawaban aslinya).</p>
 <p>Second column: Pilih Prediction (Label) (ini tebakan dari model KNN).</p>
@@ -716,6 +717,7 @@ document.write(`
 <section id="cara-melihat-nilai-akhirnya">
 <h4>Cara melihat nilai akhirnya:<a class="headerlink" href="#cara-melihat-nilai-akhirnya" title="Permalink to this heading">#</a></h4>
 <p>Klik kanan pada node Scorer yang sudah di-execute (berwarna hijau), lalu pilih Accuracy Statistics. Di jendela baru tersebut, Anda akan melihat tabel lengkap yang berisi nilai persentase Accuracy, Precision, Recall, dan F-Measure (F1-Score) untuk dimasukkan ke laporan analisis Anda.</p>
+<p><img alt="Grafik" src="_images/scorer-tabel.png" /></p>
 </section>
 </section>
 </section>

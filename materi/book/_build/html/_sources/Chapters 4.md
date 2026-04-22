@@ -137,39 +137,40 @@ Total        : 2.000 sampel
 ---
 
 ## penjelasan dari soal diatas
-
 ## Melakukan analisis data menggunakan K-Nearest Neighbors (KNN)
 
 Berikut adalah urutan kerja (workflow)  untuk menyelesaikan tugas Analisis Kesuburan Tanah :
 
-- **Tahap 1 & 2**: Menjawab tuntutan "Lakukan Pemrosesan Data" (menggunakan node CSV Reader, Column Filter, Missing Value, Category to Number, Normalizer).
+![Grafik](workflow-c4.png)
 
-- **Tahap 3**: Menjawab tuntutan "Lakukan analisis data dengan KNN" (menggunakan node Partitioning dan K Nearest Neighbor).
+- **Tahap 1 & 2**: penyelesaian "Lakukan Pemrosesan Data" (menggunakan node CSV Reader, Column Filter, Missing Value, Category to Number, Normalizer).
 
-- **Tahap 4**: Menjawab tuntutan "Hitung Metrik Evaluasi" (menggunakan node Scorer).
+- **Tahap 3**: penyelesaian "Lakukan analisis data dengan KNN" (menggunakan node Partitioning dan K Nearest Neighbor).
+
+- **Tahap 4**: penyelesaian "Hitung Metrik Evaluasi" (menggunakan node Scorer).
 
 ### Tahap 1: Memasukkan dan Membersihkan Data
 #### 1. CSV Reader
 
-- Fungsi: Untuk membaca file data Anda.
+- **Fungsi**: Untuk membaca file data .
 
-- Cara setting: Klik kanan -> Configure. Browse dan pilih file dataset_kesuburan_tanah_missing.xlsx - Dataset.csv. Pastikan datanya terbaca rapi di kotak preview bawah, lalu klik OK.
+- **Cara setting**: Klik kanan -> Configure. Browse dan pilih file dataset_kesuburan_tanah_missing.xlsx - Dataset.csv. Pastikan datanya terbaca rapi di kotak preview bawah, lalu klik OK.
 
 Klik kanan -> Execute.
 
 #### 2. Column Filter
 
-- Fungsi: Untuk membuang kolom ID karena tidak ada hubungannya dengan kesuburan tanah dan akan merusak perhitungan jarak KNN.
+- **Fungsi**: Untuk membuang kolom ID karena tidak ada hubungannya dengan kesuburan tanah dan akan merusak perhitungan jarak KNN.
 
--  Cara setting: Hubungkan dari CSV Reader. Klik kanan -> Configure. Pindahkan kolom ID ke kotak kiri (Exclude), sisanya biarkan di kotak kanan (Include).
+-  **Cara setting**: Hubungkan dari CSV Reader. Klik kanan -> Configure. Pindahkan kolom ID ke kotak kiri (Exclude), sisanya biarkan di kotak kanan (Include).
 
 Klik kanan -> Execute.
 
 #### 3. Missing Value
 
-- Fungsi: Untuk mengisi data yang kosong (berisi tanda ? merah di KNIME).
+- **Fungsi**: Untuk mengisi data yang kosong (berisi tanda ? merah di KNIME).
 
-- Cara setting: Hubungkan dari Column Filter. Klik kanan -> Configure.
+- **Cara setting**: Hubungkan dari Column Filter. Klik kanan -> Configure.
 
 Di tab Default, atur kolom Number (double/integer) menjadi Median.
 
@@ -180,26 +181,26 @@ Klik kanan -> Execute.
 ### Tahap 2: Transformasi Data (Preprocessing)
 #### 4. Category To Number
 
-- Fungsi: KNN adalah algoritma matematika yang menghitung jarak, jadi teks seperti "Lempung" atau "Pasir" di kolom Tekstur Tanah harus diubah jadi angka.
+- **Fungsi**: KNN adalah algoritma matematika yang menghitung jarak, jadi teks seperti "Lempung" atau "Pasir" di kolom Tekstur Tanah harus diubah jadi angka.
 
-- Cara setting: Hubungkan dari Missing Value. Klik kanan -> Configure. Masukkan kolom Tekstur Tanah ke kotak Include. (Catatan: Jangan masukkan kolom Label Subur/Tidak Subur ke sini, biarkan Label tetap berbentuk teks).
+- **Cara setting**: Hubungkan dari Missing Value. Klik kanan -> Configure. Masukkan kolom Tekstur Tanah ke kotak Include. (Catatan: Jangan masukkan kolom Label Subur/Tidak Subur ke sini, biarkan Label tetap berbentuk teks).
 
 Klik kanan -> Execute.
 
 #### 5. Normalizer
 
-- Fungsi: Menyamakan skala angka (seperti yang kita bahas di Min-Max / Z-Score).
+- **Fungsi**: Menyamakan skala angka .
 
-- Cara setting: Hubungkan dari Category To Number. Klik kanan -> Configure. Pilih semua fitur numerik. Di bagian bawah, pilih Z-Score Normalization (Standardization) atau Min-Max Normalization (0 to 1). Keduanya bagus untuk KNN.
+- **Cara setting**: Hubungkan dari Category To Number. Klik kanan -> Configure. Pilih semua fitur numerik. Di bagian bawah, pilih Z-Score Normalization (Standardization) atau Min-Max Normalization (0 to 1). Keduanya bagus untuk KNN.
 
 Klik kanan -> Execute.
 
 ### Tahap 3: Pemodelan (Machine Learning)
 #### 6. Partitioning
 
-- Fungsi: Membagi data menjadi 80% Data Latih (Train) dan 20% Data Uji (Test).
+- **Fungsi**: Membagi data menjadi 80% Data Latih (Train) dan 20% Data Uji (Test).
 
-- Cara setting: Hubungkan dari Normalizer. Klik kanan -> Configure.
+- **Cara setting**: Hubungkan dari Normalizer. Klik kanan -> Configure.
 
 Di opsi Relative [%], isi 80.
 
@@ -209,11 +210,11 @@ Klik kanan -> Execute. (Node ini punya dua titik output di kanan: atas untuk Tra
 
 #### 7. K Nearest Neighbor
 
-- Fungsi: Ini adalah algoritma prediksinya.
+- **Fungsi**: Ini adalah algoritma prediksinya.
 
-- Cara menghubungkan: Tarik garis dari output atas Partitioning (data latih) ke input atas node KNN. Lalu tarik garis dari output bawah Partitioning (data uji) ke input bawah node KNN.
+- **Cara menghubungkan**: Tarik garis dari output atas Partitioning (data latih) ke input atas node KNN. Lalu tarik garis dari output bawah Partitioning (data uji) ke input bawah node KNN.
 
-- Cara setting: Klik kanan -> Configure.
+- **Cara setting**: Klik kanan -> Configure.
 
 Number of neighbors (k): Isi 5 (atau angka ganjil lain seperti 3 atau 7).
 
@@ -224,9 +225,9 @@ Klik kanan -> Execute.
 ### Tahap 4: Evaluasi Hasil (Hitung Metrik)
 #### 8. Scorer
 
-- Fungsi: Untuk memunculkan nilai Accuracy, Precision, Recall, dan F1-Score sesuai permintaan tugas Anda.
+- **Fungsi**: Untuk memunculkan nilai Accuracy, Precision, Recall, dan F1-Score 
 
-- Cara setting: Hubungkan dari K Nearest Neighbor. Klik kanan -> Configure.
+- **Cara setting**: Hubungkan dari K Nearest Neighbor. Klik kanan -> Configure.
 
 First column: Pilih Label (ini kunci jawaban aslinya).
 
@@ -236,3 +237,5 @@ Klik kanan -> Execute.
 
 #### Cara melihat nilai akhirnya:
 Klik kanan pada node Scorer yang sudah di-execute (berwarna hijau), lalu pilih Accuracy Statistics. Di jendela baru tersebut, Anda akan melihat tabel lengkap yang berisi nilai persentase Accuracy, Precision, Recall, dan F-Measure (F1-Score) untuk dimasukkan ke laporan analisis Anda.
+
+![Grafik](scorer-tabel.png)
