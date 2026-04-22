@@ -36,6 +36,8 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -638,25 +640,20 @@ document.write(`
 <li><p><strong>Fungsi</strong>: Untuk membaca file data .</p></li>
 <li><p><strong>Cara setting</strong>: Klik kanan -&gt; Configure. Browse dan pilih file dataset_kesuburan_tanah_missing.xlsx - Dataset.csv. Pastikan datanya terbaca rapi di kotak preview bawah, lalu klik OK.</p></li>
 </ul>
-<p>Klik kanan -&gt; Execute.</p>
 </section>
 <section id="column-filter">
 <h4>2. Column Filter<a class="headerlink" href="#column-filter" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Fungsi</strong>: Untuk membuang kolom ID karena tidak ada hubungannya dengan kesuburan tanah dan akan merusak perhitungan jarak KNN.</p></li>
-<li><p><strong>Cara setting</strong>: Hubungkan dari CSV Reader. Klik kanan -&gt; Configure. Pindahkan kolom ID ke kotak kiri (Exclude), sisanya biarkan di kotak kanan (Include).</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari CSV Reader. Klik kanan -&gt; Configure. Pindahkan kolom ID ke kotak kiri (Exclude), sisanya biarkan di kotak kanan (Include) Klik kanan -&gt; Execute.</p></li>
 </ul>
-<p>Klik kanan -&gt; Execute.</p>
 </section>
 <section id="missing-value">
 <h4>3. Missing Value<a class="headerlink" href="#missing-value" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Fungsi</strong>: Untuk mengisi data yang kosong (berisi tanda ? merah di KNIME).</p></li>
-<li><p><strong>Cara setting</strong>: Hubungkan dari Column Filter. Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari Column Filter. Klik kanan -&gt; Configure. Di tab Default, atur kolom Number (double/integer) menjadi Median. Atur kolom String menjadi Most Frequent Value (untuk mengisi kolom Tekstur Tanah yang kosong dengan nilai modus).</p></li>
 </ul>
-<p>Di tab Default, atur kolom Number (double/integer) menjadi Median.</p>
-<p>Atur kolom String menjadi Most Frequent Value (untuk mengisi kolom Tekstur Tanah yang kosong dengan nilai modus).</p>
-<p>Klik kanan -&gt; Execute.</p>
 </section>
 </section>
 <section id="tahap-2-transformasi-data-preprocessing">
@@ -667,7 +664,6 @@ document.write(`
 <li><p><strong>Fungsi</strong>: KNN adalah algoritma matematika yang menghitung jarak, jadi teks seperti “Lempung” atau “Pasir” di kolom Tekstur Tanah harus diubah jadi angka.</p></li>
 <li><p><strong>Cara setting</strong>: Hubungkan dari Missing Value. Klik kanan -&gt; Configure. Masukkan kolom Tekstur Tanah ke kotak Include. (Catatan: Jangan masukkan kolom Label Subur/Tidak Subur ke sini, biarkan Label tetap berbentuk teks).</p></li>
 </ul>
-<p>Klik kanan -&gt; Execute.</p>
 </section>
 <section id="normalizer">
 <h4>5. Normalizer<a class="headerlink" href="#normalizer" title="Permalink to this heading">#</a></h4>
@@ -675,7 +671,6 @@ document.write(`
 <li><p><strong>Fungsi</strong>: Menyamakan skala angka .</p></li>
 <li><p><strong>Cara setting</strong>: Hubungkan dari Category To Number. Klik kanan -&gt; Configure. Pilih semua fitur numerik. Di bagian bawah, pilih Z-Score Normalization (Standardization) atau Min-Max Normalization (0 to 1). Keduanya bagus untuk KNN.</p></li>
 </ul>
-<p>Klik kanan -&gt; Execute.</p>
 </section>
 </section>
 <section id="tahap-3-pemodelan-machine-learning">
@@ -684,22 +679,16 @@ document.write(`
 <h4>6. Partitioning<a class="headerlink" href="#partitioning" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Fungsi</strong>: Membagi data menjadi 80% Data Latih (Train) dan 20% Data Uji (Test).</p></li>
-<li><p><strong>Cara setting</strong>: Hubungkan dari Normalizer. Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari Normalizer. Klik kanan -&gt; Configure. Di opsi Relative [%], isi 80.  Centang kotak Stratified sampling, lalu pilih kolom Label. Ini memastikan porsi Subur dan Tidak Subur dibagi sama rata di data latih dan uji (Node ini punya dua titik output di kanan: atas untuk Train, bawah untuk Test).</p></li>
 </ul>
-<p>Di opsi Relative [%], isi 80.</p>
-<p>Centang kotak Stratified sampling, lalu pilih kolom Label. Ini memastikan porsi Subur dan Tidak Subur dibagi sama rata di data latih dan uji.</p>
-<p>Klik kanan -&gt; Execute. (Node ini punya dua titik output di kanan: atas untuk Train, bawah untuk Test).</p>
 </section>
 <section id="k-nearest-neighbor">
 <h4>7. K Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Fungsi</strong>: Ini adalah algoritma prediksinya.</p></li>
 <li><p><strong>Cara menghubungkan</strong>: Tarik garis dari output atas Partitioning (data latih) ke input atas node KNN. Lalu tarik garis dari output bawah Partitioning (data uji) ke input bawah node KNN.</p></li>
-<li><p><strong>Cara setting</strong>: Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Cara setting</strong>: Klik kanan -&gt; Configure. Number of neighbors (k): Isi 5 (atau angka ganjil lain seperti 3 atau 7). Class column: Pilih Label (karena ini yang mau kita tebak).</p></li>
 </ul>
-<p>Number of neighbors (k): Isi 5 (atau angka ganjil lain seperti 3 atau 7).</p>
-<p>Class column: Pilih Label (karena ini yang mau kita tebak).</p>
-<p>Klik kanan -&gt; Execute.</p>
 </section>
 </section>
 <section id="tahap-4-evaluasi-hasil-hitung-metrik">
@@ -708,11 +697,8 @@ document.write(`
 <h4>8. Scorer<a class="headerlink" href="#scorer" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Fungsi</strong>: Untuk memunculkan nilai Accuracy, Precision, Recall, dan F1-Score</p></li>
-<li><p><strong>Cara setting</strong>: Hubungkan dari K Nearest Neighbor. Klik kanan -&gt; Configure.</p></li>
+<li><p><strong>Cara setting</strong>: Hubungkan dari K Nearest Neighbor. Klik kanan -&gt; Configure. First column: Pilih Label (ini kunci jawaban aslinya). Second column: Pilih Prediction (Label) (ini tebakan dari model KNN).</p></li>
 </ul>
-<p>First column: Pilih Label (ini kunci jawaban aslinya).</p>
-<p>Second column: Pilih Prediction (Label) (ini tebakan dari model KNN).</p>
-<p>Klik kanan -&gt; Execute.</p>
 </section>
 <section id="cara-melihat-nilai-akhirnya">
 <h4>Cara melihat nilai akhirnya:<a class="headerlink" href="#cara-melihat-nilai-akhirnya" title="Permalink to this heading">#</a></h4>
