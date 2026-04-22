@@ -1,0 +1,7 @@
+/* Membuat class khusus untuk gambar berbingkai */
+.gambar-bingkai {
+    border: 2px solid #808080; /* Ketebalan dan warna bingkai (abu-abu) */
+    border-radius: 6px;        /* Membuat ujung bingkai sedikit melengkung (opsional) */
+    padding: 4px;              /* Jarak putih antara gambar dan garis bingkai */
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1); /* Tambahan bayangan tipis agar elegan */
+}
