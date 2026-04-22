@@ -1,5 +1,4 @@
-# UTS
-
+# Midterm Exam
 
 ## Analisa Data Kesuburan Tanah 
 
