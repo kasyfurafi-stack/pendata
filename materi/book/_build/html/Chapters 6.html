@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Coming soon 🔥 &#8212; Materi perkuliahan - Penambangan Data A</title>
+    <title>Naive Bayes - Analisis Data &#8212; Materi perkuliahan - Penambangan Data A</title>
   
   
   
@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapters%203.html">Mengukur Jarak/Similaritas Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%204.html">Midterm Exam</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Coming soon 🔥</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Naive Bayes - Analisis Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%207.html">Coming soon 🔥</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%208.html">Coming soon 🔥</a></li>
 </ul>
@@ -310,7 +310,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -321,11 +323,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Coming soon 🔥</h1>
+    <h1>Naive Bayes - Analisis Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi">Deskripsi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-yang-digunakan">Tools yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python">Script Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat">Penjelasan Singkat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis">Hasil Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -335,8 +350,78 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="coming-soon">
-<h1>Coming soon 🔥<a class="headerlink" href="#coming-soon" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="naive-bayes-analisis-data">
+<h1>Naive Bayes - Analisis Data<a class="headerlink" href="#naive-bayes-analisis-data" title="Permalink to this heading">#</a></h1>
+<section id="deskripsi">
+<h2>Deskripsi<a class="headerlink" href="#deskripsi" title="Permalink to this heading">#</a></h2>
+<p>Analisis data ini menggunakan metode <strong>Naive Bayes Classifier</strong> dengan library <strong>Scikit-learn</strong> pada Python.<br />
+Naive Bayes merupakan algoritma klasifikasi berbasis probabilitas yang bekerja berdasarkan Teorema Bayes.</p>
+<p>Metode ini cocok digunakan untuk klasifikasi data numerik maupun kategorikal karena proses komputasinya cepat dan sederhana.</p>
+</section>
+<hr class="docutils" />
+<section id="tools-yang-digunakan">
+<h2>Tools yang Digunakan<a class="headerlink" href="#tools-yang-digunakan" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Python</p></li>
+<li><p>Pandas</p></li>
+<li><p>Scikit-learn</p></li>
+<li><p>Jupyter Notebook / Google Colab / VS Code</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="script-python">
+<h2>Script Python<a class="headerlink" href="#script-python" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-singkat">
+<h2>Penjelasan Singkat<a class="headerlink" href="#penjelasan-singkat" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Dataset dibaca menggunakan Pandas</p></li>
+<li><p>Data dipisahkan menjadi fitur (<code class="docutils literal notranslate"><span class="pre">X</span></code>) dan target (<code class="docutils literal notranslate"><span class="pre">y</span></code>)</p></li>
+<li><p>Data dibagi menjadi data training dan testing</p></li>
+<li><p>Model Gaussian Naive Bayes dilatih menggunakan data training</p></li>
+<li><p>Model melakukan prediksi pada data testing</p></li>
+<li><p>Hasil evaluasi ditampilkan dalam bentuk akurasi dan classification report</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="hasil-analisis">
+<h2>Hasil Analisis<a class="headerlink" href="#hasil-analisis" title="Permalink to this heading">#</a></h2>
+<p>Output yang dihasilkan berupa:</p>
+<ul class="simple">
+<li><p>Nilai akurasi</p></li>
+<li><p>Precision</p></li>
+<li><p>Recall</p></li>
+<li><p>F1-score</p></li>
+</ul>
+<p>Nilai tersebut digunakan untuk mengetahui performa model dalam melakukan klasifikasi.</p>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Permalink to this heading">#</a></h2>
+<p>Naive Bayes merupakan metode klasifikasi yang sederhana, cepat, dan efektif untuk analisis data.<br />
+Model ini dapat digunakan untuk memprediksi kelas data berdasarkan pola yang dipelajari dari dataset training.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -393,6 +478,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi">Deskripsi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-yang-digunakan">Tools yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python">Script Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat">Penjelasan Singkat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis">Hasil Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
