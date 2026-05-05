@@ -343,13 +343,37 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classification-knime-python-script">Naive Bayes Classification (KNIME + Python Script)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas">Tugas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Deskripsi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-proses-di-knime">Alur Proses di KNIME</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python-di-dalam-knime-python-script-node">Script Python (di dalam KNIME Python Script Node)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-proses">Penjelasan Proses</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-data-mentah">1. Import Data (Data Mentah)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-csv-reader">Node: CSV Reader</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-bersihkan-data">2. Cek &amp; Bersihkan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-missing-value-opsional">Node: Missing Value (Opsional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-kolom">3. Seleksi Kolom</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-column-filter">Node: Column Filter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-training-testing">4. Split Data (Training &amp; Testing)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-partitioning">Node: Partitioning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-python-script-sklearn">5. Modeling (Python Script - sklearn)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-python-script">Node: Python Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Script Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-proses">Penjelasan Proses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-output">6. Menampilkan Output</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-table-view">Node: Table View</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow">7. Alur Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-proses">8. Ringkasan Proses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9. Kesimpulan</a></li>
 </ul>
 </li>
 </ul>
@@ -437,69 +461,129 @@ Naive Bayes merupakan algoritma klasifikasi berbasis probabilitas yang bekerja b
 Model ini dapat digunakan untuk memprediksi kelas data berdasarkan pola yang dipelajari dari dataset training.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="naive-bayes-classification-knime-python-script">
-<h1>Naive Bayes Classification (KNIME + Python Script)<a class="headerlink" href="#naive-bayes-classification-knime-python-script" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="tugas">
+<h1>Tugas<a class="headerlink" href="#tugas" title="Permalink to this heading">#</a></h1>
 <section id="id1">
 <h2>Deskripsi<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>Proyek ini mengimplementasikan klasifikasi <strong>Naive Bayes (GaussianNB)</strong> menggunakan:</p>
-<ul class="simple">
-<li><p>KNIME → untuk preprocessing data</p></li>
-<li><p>Python Script (sklearn) → untuk model classifier</p></li>
-</ul>
+<p>Proses ini menjelaskan alur lengkap penggunaan <strong>KNIME</strong> dari data mentah hingga menghasilkan output klasifikasi menggunakan <strong>Naive Bayes (GaussianNB)</strong> melalui <strong>Python Script (sklearn)</strong>.</p>
 </section>
 <hr class="docutils" />
-<section id="alur-proses-di-knime">
-<h2>Alur Proses di KNIME<a class="headerlink" href="#alur-proses-di-knime" title="Permalink to this heading">#</a></h2>
+<section id="import-data-data-mentah">
+<h2>1. Import Data (Data Mentah)<a class="headerlink" href="#import-data-data-mentah" title="Permalink to this heading">#</a></h2>
+<section id="node-csv-reader">
+<h3>Node: CSV Reader<a class="headerlink" href="#node-csv-reader" title="Permalink to this heading">#</a></h3>
+<p><strong>Langkah:</strong></p>
 <ol class="arabic simple">
-<li><p><strong>File Reader / CSV Reader</strong></p>
+<li><p>Tambahkan node <strong>CSV Reader</strong></p></li>
+<li><p>Pilih file <code class="docutils literal notranslate"><span class="pre">iris.csv</span></code></p></li>
+<li><p>Execute</p></li>
+</ol>
+<p><strong>Penjelasan:</strong></p>
 <ul class="simple">
-<li><p>Membaca dataset (contoh: Iris.csv)</p></li>
+<li><p>Membaca data mentah dari file CSV</p></li>
+<li><p>Output berupa tabel berisi fitur dan target</p></li>
 </ul>
-</li>
-<li><p><strong>Data Preprocessing</strong></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="cek-bersihkan-data">
+<h2>2. Cek &amp; Bersihkan Data<a class="headerlink" href="#cek-bersihkan-data" title="Permalink to this heading">#</a></h2>
+<section id="node-missing-value-opsional">
+<h3>Node: Missing Value (Opsional)<a class="headerlink" href="#node-missing-value-opsional" title="Permalink to this heading">#</a></h3>
+<p><strong>Langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Sambungkan dari CSV Reader</p></li>
+<li><p>Pilih metode pengisian (Mean untuk numerik)</p></li>
+</ol>
+<p><strong>Penjelasan:</strong></p>
 <ul class="simple">
-<li><p>Missing Value (jika ada)</p></li>
-<li><p>Normalisasi (opsional)</p></li>
-<li><p>Column Filter (pilih fitur &amp; target)</p></li>
+<li><p>Digunakan untuk menangani data kosong</p></li>
+<li><p>Bisa dilewati jika dataset sudah bersih</p></li>
 </ul>
-</li>
-<li><p><strong>Partitioning</strong></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="seleksi-kolom">
+<h2>3. Seleksi Kolom<a class="headerlink" href="#seleksi-kolom" title="Permalink to this heading">#</a></h2>
+<section id="node-column-filter">
+<h3>Node: Column Filter<a class="headerlink" href="#node-column-filter" title="Permalink to this heading">#</a></h3>
+<p><strong>Langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Sambungkan dari node sebelumnya</p></li>
+<li><p>Pilih hanya:</p>
 <ul class="simple">
-<li><p>Membagi data:</p>
-<ul>
-<li><p>80% training</p></li>
-<li><p>20% testing</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Python Script Node (CORE MODEL)</strong></p>
-<ul class="simple">
-<li><p>Model Naive Bayes dibuat di sini menggunakan sklearn</p></li>
-</ul>
-</li>
-<li><p><strong>Output</strong></p>
-<ul class="simple">
-<li><p>Menampilkan hasil prediksi dan evaluasi</p></li>
+<li><p>Kolom fitur (numerik)</p></li>
+<li><p>Kolom <code class="docutils literal notranslate"><span class="pre">target</span></code></p></li>
 </ul>
 </li>
 </ol>
+<p><strong>Penjelasan:</strong></p>
+<ul class="simple">
+<li><p>Menghindari kolom tidak relevan masuk ke model</p></li>
+<li><p>Menyesuaikan struktur data untuk machine learning</p></li>
+</ul>
+</section>
 </section>
 <hr class="docutils" />
-<section id="script-python-di-dalam-knime-python-script-node">
-<h2>Script Python (di dalam KNIME Python Script Node)<a class="headerlink" href="#script-python-di-dalam-knime-python-script-node" title="Permalink to this heading">#</a></h2>
+<section id="split-data-training-testing">
+<h2>4. Split Data (Training &amp; Testing)<a class="headerlink" href="#split-data-training-testing" title="Permalink to this heading">#</a></h2>
+<section id="node-partitioning">
+<h3>Node: Partitioning<a class="headerlink" href="#node-partitioning" title="Permalink to this heading">#</a></h3>
+<p><strong>Langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Sambungkan dari Column Filter</p></li>
+<li><p>Atur:</p>
+<ul class="simple">
+<li><p>Training: 80%</p></li>
+<li><p>Testing: 20%</p></li>
+<li><p>Aktifkan <strong>Stratified Sampling</strong></p></li>
+<li><p>Pilih kolom <code class="docutils literal notranslate"><span class="pre">target</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Penjelasan:</strong></p>
+<ul class="simple">
+<li><p>Membagi data menjadi:</p>
+<ul>
+<li><p>Data training (melatih model)</p></li>
+<li><p>Data testing (evaluasi model)</p></li>
+</ul>
+</li>
+<li><p>Stratified menjaga distribusi kelas tetap seimbang</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="modeling-python-script-sklearn">
+<h2>5. Modeling (Python Script - sklearn)<a class="headerlink" href="#modeling-python-script-sklearn" title="Permalink to this heading">#</a></h2>
+<section id="node-python-script">
+<h3>Node: Python Script<a class="headerlink" href="#node-python-script" title="Permalink to this heading">#</a></h3>
+<p><strong>Koneksi:</strong></p>
+<ul class="simple">
+<li><p>Output atas (training) → input 1</p></li>
+<li><p>Output bawah (testing) → input 2</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h3>Script Python<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
 
 <span class="c1"># Ambil data dari KNIME</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">input_table_2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">input_table_2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">input_table_2</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="c1"># Pisahkan fitur &amp; target</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
 
-<span class="c1"># Model Naive Bayes</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+
+<span class="c1"># Model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
@@ -508,63 +592,86 @@ Model ini dapat digunakan untuk memprediksi kelas data berdasarkan pola yang dip
 
 <span class="c1"># Evaluasi</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 
 <span class="c1"># Output ke KNIME</span>
-<span class="n">output_table</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">output_table</span><span class="p">[</span><span class="s2">&quot;Actual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_test</span>
+<span class="n">output_table</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">output_table</span><span class="p">[</span><span class="s2">&quot;Predicted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
 </pre></div>
 </div>
-<hr class="docutils" />
-<p><img alt="python" src="hasilCode.png" /></p>
 </section>
+<hr class="docutils" />
 <section id="penjelasan-proses">
-<h2>Penjelasan Proses<a class="headerlink" href="#penjelasan-proses" title="Permalink to this heading">#</a></h2>
+<h3>Penjelasan Proses<a class="headerlink" href="#penjelasan-proses" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Data training digunakan untuk melatih model</p></li>
+<li><p>Data testing digunakan untuk evaluasi</p></li>
+<li><p>GaussianNB dipilih karena data numerik</p></li>
+<li><p>Output:</p>
+<ul>
+<li><p>Nilai akurasi</p></li>
+<li><p>Classification report</p></li>
+<li><p>Hasil prediksi</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="menampilkan-output">
+<h2>6. Menampilkan Output<a class="headerlink" href="#menampilkan-output" title="Permalink to this heading">#</a></h2>
+<section id="node-table-view">
+<h3>Node: Table View<a class="headerlink" href="#node-table-view" title="Permalink to this heading">#</a></h3>
+<p><strong>Langkah:</strong></p>
 <ol class="arabic simple">
-<li><p><strong>KNIME digunakan untuk preprocessing</strong></p>
+<li><p>Sambungkan dari Python Script</p></li>
+<li><p>Execute</p></li>
+</ol>
+<p><strong>Penjelasan:</strong></p>
 <ul class="simple">
-<li><p>Membaca data mentah</p></li>
-<li><p>Membersihkan dan membagi data</p></li>
+<li><p>Menampilkan hasil akhir dalam bentuk tabel</p></li>
+<li><p>Terdapat kolom tambahan: <strong>Predicted</strong></p></li>
 </ul>
-</li>
-<li><p><strong>Python Script digunakan untuk modeling</strong></p>
-<ul class="simple">
-<li><p>Data training dan testing dikirim ke Python</p></li>
-<li><p>Model GaussianNB dilatih menggunakan data training</p></li>
-<li><p>Model memprediksi data testing</p></li>
-</ul>
-</li>
-<li><p><strong>Evaluasi hasil</strong></p>
-<ul class="simple">
-<li><p>Accuracy → seberapa akurat model</p></li>
-<li><p>Classification Report → detail performa tiap kelas</p></li>
-</ul>
-</li>
+</section>
+</section>
+<hr class="docutils" />
+<section id="alur-workflow">
+<h2>7. Alur Workflow<a class="headerlink" href="#alur-workflow" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CSV Reader
+   ↓
+Missing Value (opsional)
+   ↓
+Column Filter
+   ↓
+Partitioning
+  ↙      ↘
+Train    Test
+   ↓        ↓
+   └── Python Script ──→ Table View
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ringkasan-proses">
+<h2>8. Ringkasan Proses<a class="headerlink" href="#ringkasan-proses" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Data mentah dibaca dari CSV</p></li>
+<li><p>Data dibersihkan dan dipilih kolom penting</p></li>
+<li><p>Data dibagi menjadi training dan testing</p></li>
+<li><p>Model Naive Bayes dilatih menggunakan Python (sklearn)</p></li>
+<li><p>Model melakukan prediksi</p></li>
+<li><p>Hasil ditampilkan dalam bentuk tabel dan evaluasi</p></li>
 </ol>
 </section>
 <hr class="docutils" />
-<section id="dataset">
-<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h2>
-<p>Gunakan dataset bebas (contoh: Iris CSV)</p>
-<p>Format:</p>
+<section id="id3">
+<h2>9. Kesimpulan<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Kolom fitur (numerik)</p></li>
-<li><p>1 kolom target (label)</p></li>
+<li><p>KNIME digunakan untuk preprocessing dan workflow visual</p></li>
+<li><p>Python Script digunakan untuk modeling Naive Bayes</p></li>
+<li><p>Model mampu melakukan klasifikasi dengan akurasi tinggi pada data numerik sederhana</p></li>
 </ul>
-</section>
-<hr class="docutils" />
-<section id="id2">
-<h2>Kesimpulan<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>Kombinasi KNIME dan Python memungkinkan:</p>
-<ul class="simple">
-<li><p>Visual workflow (KNIME)</p></li>
-<li><p>Fleksibilitas modeling (Python + sklearn)</p></li>
-</ul>
-<p>Naive Bayes (GaussianNB) terbukti efektif untuk klasifikasi data numerik sederhana dengan akurasi tinggi.</p>
 </section>
 </section>
 
@@ -641,13 +748,37 @@ Model ini dapat digunakan untuk memprediksi kelas data berdasarkan pola yang dip
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classification-knime-python-script">Naive Bayes Classification (KNIME + Python Script)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas">Tugas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Deskripsi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-proses-di-knime">Alur Proses di KNIME</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python-di-dalam-knime-python-script-node">Script Python (di dalam KNIME Python Script Node)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-proses">Penjelasan Proses</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-data-mentah">1. Import Data (Data Mentah)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-csv-reader">Node: CSV Reader</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-bersihkan-data">2. Cek &amp; Bersihkan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-missing-value-opsional">Node: Missing Value (Opsional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-kolom">3. Seleksi Kolom</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-column-filter">Node: Column Filter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-training-testing">4. Split Data (Training &amp; Testing)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-partitioning">Node: Partitioning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-python-script-sklearn">5. Modeling (Python Script - sklearn)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-python-script">Node: Python Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Script Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-proses">Penjelasan Proses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-output">6. Menampilkan Output</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-table-view">Node: Table View</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow">7. Alur Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-proses">8. Ringkasan Proses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9. Kesimpulan</a></li>
 </ul>
 </li>
 </ul>

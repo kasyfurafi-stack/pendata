@@ -65,53 +65,105 @@ Nilai tersebut digunakan untuk mengetahui performa model dalam melakukan klasifi
 Naive Bayes merupakan metode klasifikasi yang sederhana, cepat, dan efektif untuk analisis data.  
 Model ini dapat digunakan untuk memprediksi kelas data berdasarkan pola yang dipelajari dari dataset training.
 
-# Naive Bayes Classification (KNIME + Python Script)
+
+---
+
+# Tugas
 
 ## Deskripsi
-Proyek ini mengimplementasikan klasifikasi **Naive Bayes (GaussianNB)** menggunakan:
-- KNIME → untuk preprocessing data
-- Python Script (sklearn) → untuk model classifier
+Proses ini menjelaskan alur lengkap penggunaan **KNIME** dari data mentah hingga menghasilkan output klasifikasi menggunakan **Naive Bayes (GaussianNB)** melalui **Python Script (sklearn)**.
 
 ---
 
-## Alur Proses di KNIME
+## 1. Import Data (Data Mentah)
 
-1. **File Reader / CSV Reader**
-   - Membaca dataset (contoh: Iris.csv)
+### Node: CSV Reader
+**Langkah:**
+1. Tambahkan node **CSV Reader**
+2. Pilih file `iris.csv`
+3. Execute
 
-2. **Data Preprocessing**
-   - Missing Value (jika ada)
-   - Normalisasi (opsional)
-   - Column Filter (pilih fitur & target)
-
-3. **Partitioning**
-   - Membagi data:
-     - 80% training
-     - 20% testing
-
-4. **Python Script Node (CORE MODEL)**
-   - Model Naive Bayes dibuat di sini menggunakan sklearn
-
-5. **Output**
-   - Menampilkan hasil prediksi dan evaluasi
+**Penjelasan:**
+- Membaca data mentah dari file CSV
+- Output berupa tabel berisi fitur dan target
 
 ---
 
-## Script Python (di dalam KNIME Python Script Node)
+## 2. Cek & Bersihkan Data
 
+### Node: Missing Value (Opsional)
+**Langkah:**
+1. Sambungkan dari CSV Reader
+2. Pilih metode pengisian (Mean untuk numerik)
+
+**Penjelasan:**
+- Digunakan untuk menangani data kosong
+- Bisa dilewati jika dataset sudah bersih
+
+---
+
+## 3. Seleksi Kolom
+
+### Node: Column Filter
+**Langkah:**
+1. Sambungkan dari node sebelumnya
+2. Pilih hanya:
+   - Kolom fitur (numerik)
+   - Kolom `target`
+
+**Penjelasan:**
+- Menghindari kolom tidak relevan masuk ke model
+- Menyesuaikan struktur data untuk machine learning
+
+---
+
+## 4. Split Data (Training & Testing)
+
+### Node: Partitioning
+**Langkah:**
+1. Sambungkan dari Column Filter
+2. Atur:
+   - Training: 80%
+   - Testing: 20%
+   - Aktifkan **Stratified Sampling**
+   - Pilih kolom `target`
+
+**Penjelasan:**
+- Membagi data menjadi:
+  - Data training (melatih model)
+  - Data testing (evaluasi model)
+- Stratified menjaga distribusi kelas tetap seimbang
+
+---
+
+## 5. Modeling (Python Script - sklearn)
+
+### Node: Python Script
+
+**Koneksi:**
+- Output atas (training) → input 1
+- Output bawah (testing) → input 2
+
+---
+
+### Script Python
 ```python
 import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, classification_report
 
 # Ambil data dari KNIME
-X_train = input_table_1.drop("target", axis=1)
-y_train = input_table_1["target"]
+train_df = input_table_1.copy()
+test_df = input_table_2.copy()
 
-X_test = input_table_2.drop("target", axis=1)
-y_test = input_table_2["target"]
+# Pisahkan fitur & target
+X_train = train_df.drop(columns=["target"])
+y_train = train_df["target"]
 
-# Model Naive Bayes
+X_test = test_df.drop(columns=["target"])
+y_test = test_df["target"]
+
+# Model
 model = GaussianNB()
 model.fit(X_train, y_train)
 
@@ -120,51 +172,70 @@ y_pred = model.predict(X_test)
 
 # Evaluasi
 accuracy = accuracy_score(y_test, y_pred)
-report = classification_report(y_test, y_pred)
+print("Accuracy:", accuracy)
+print(classification_report(y_test, y_pred))
 
 # Output ke KNIME
-output_table = X_test.copy()
-output_table["Actual"] = y_test
+output_table = test_df.copy()
 output_table["Predicted"] = y_pred
-
-print("Accuracy:", accuracy)
-print(report)
 ```
 
 ---
-![python](hasilCode.png)
-## Penjelasan Proses
 
-1. **KNIME digunakan untuk preprocessing**
-   - Membaca data mentah
-   - Membersihkan dan membagi data
-
-2. **Python Script digunakan untuk modeling**
-   - Data training dan testing dikirim ke Python
-   - Model GaussianNB dilatih menggunakan data training
-   - Model memprediksi data testing
-
-3. **Evaluasi hasil**
-   - Accuracy → seberapa akurat model
-   - Classification Report → detail performa tiap kelas
+### Penjelasan Proses
+- Data training digunakan untuk melatih model
+- Data testing digunakan untuk evaluasi
+- GaussianNB dipilih karena data numerik
+- Output:
+  - Nilai akurasi
+  - Classification report
+  - Hasil prediksi
 
 ---
 
-## Dataset
-Gunakan dataset bebas (contoh: Iris CSV)
+## 6. Menampilkan Output
 
-Format:
-- Kolom fitur (numerik)
-- 1 kolom target (label)
+### Node: Table View
+**Langkah:**
+1. Sambungkan dari Python Script
+2. Execute
+
+**Penjelasan:**
+- Menampilkan hasil akhir dalam bentuk tabel
+- Terdapat kolom tambahan: **Predicted**
 
 ---
 
-## Kesimpulan
-Kombinasi KNIME dan Python memungkinkan:
-- Visual workflow (KNIME)
-- Fleksibilitas modeling (Python + sklearn)
+## 7. Alur Workflow
 
-Naive Bayes (GaussianNB) terbukti efektif untuk klasifikasi data numerik sederhana dengan akurasi tinggi.
+```
+CSV Reader
+   ↓
+Missing Value (opsional)
+   ↓
+Column Filter
+   ↓
+Partitioning
+  ↙      ↘
+Train    Test
+   ↓        ↓
+   └── Python Script ──→ Table View
+```
 
+---
 
+## 8. Ringkasan Proses
 
+1. Data mentah dibaca dari CSV  
+2. Data dibersihkan dan dipilih kolom penting  
+3. Data dibagi menjadi training dan testing  
+4. Model Naive Bayes dilatih menggunakan Python (sklearn)  
+5. Model melakukan prediksi  
+6. Hasil ditampilkan dalam bentuk tabel dan evaluasi  
+
+---
+
+## 9. Kesimpulan
+- KNIME digunakan untuk preprocessing dan workflow visual  
+- Python Script digunakan untuk modeling Naive Bayes  
+- Model mampu melakukan klasifikasi dengan akurasi tinggi pada data numerik sederhana  
