@@ -23,7 +23,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, classification_report
 
-df = pd.read_csv("data.csv")
+df = pd.read_csv("target-data.csv")
 X = df.drop("target", axis=1)
 y = df["target"]
 
@@ -64,3 +64,107 @@ Nilai tersebut digunakan untuk mengetahui performa model dalam melakukan klasifi
 ## Kesimpulan
 Naive Bayes merupakan metode klasifikasi yang sederhana, cepat, dan efektif untuk analisis data.  
 Model ini dapat digunakan untuk memprediksi kelas data berdasarkan pola yang dipelajari dari dataset training.
+
+# Naive Bayes Classification (KNIME + Python Script)
+
+## Deskripsi
+Proyek ini mengimplementasikan klasifikasi **Naive Bayes (GaussianNB)** menggunakan:
+- KNIME → untuk preprocessing data
+- Python Script (sklearn) → untuk model classifier
+
+---
+
+## Alur Proses di KNIME
+
+1. **File Reader / CSV Reader**
+   - Membaca dataset (contoh: Iris.csv)
+
+2. **Data Preprocessing**
+   - Missing Value (jika ada)
+   - Normalisasi (opsional)
+   - Column Filter (pilih fitur & target)
+
+3. **Partitioning**
+   - Membagi data:
+     - 80% training
+     - 20% testing
+
+4. **Python Script Node (CORE MODEL)**
+   - Model Naive Bayes dibuat di sini menggunakan sklearn
+
+5. **Output**
+   - Menampilkan hasil prediksi dan evaluasi
+
+---
+
+## Script Python (di dalam KNIME Python Script Node)
+
+```python
+import pandas as pd
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, classification_report
+
+# Ambil data dari KNIME
+X_train = input_table_1.drop("target", axis=1)
+y_train = input_table_1["target"]
+
+X_test = input_table_2.drop("target", axis=1)
+y_test = input_table_2["target"]
+
+# Model Naive Bayes
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# Prediksi
+y_pred = model.predict(X_test)
+
+# Evaluasi
+accuracy = accuracy_score(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+
+# Output ke KNIME
+output_table = X_test.copy()
+output_table["Actual"] = y_test
+output_table["Predicted"] = y_pred
+
+print("Accuracy:", accuracy)
+print(report)
+```
+
+---
+![python](hasilCode.png)
+## Penjelasan Proses
+
+1. **KNIME digunakan untuk preprocessing**
+   - Membaca data mentah
+   - Membersihkan dan membagi data
+
+2. **Python Script digunakan untuk modeling**
+   - Data training dan testing dikirim ke Python
+   - Model GaussianNB dilatih menggunakan data training
+   - Model memprediksi data testing
+
+3. **Evaluasi hasil**
+   - Accuracy → seberapa akurat model
+   - Classification Report → detail performa tiap kelas
+
+---
+
+## Dataset
+Gunakan dataset bebas (contoh: Iris CSV)
+
+Format:
+- Kolom fitur (numerik)
+- 1 kolom target (label)
+
+---
+
+## Kesimpulan
+Kombinasi KNIME dan Python memungkinkan:
+- Visual workflow (KNIME)
+- Fleksibilitas modeling (Python + sklearn)
+
+Naive Bayes (GaussianNB) terbukti efektif untuk klasifikasi data numerik sederhana dengan akurasi tinggi.
+
+
+
