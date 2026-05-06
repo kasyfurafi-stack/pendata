@@ -39,6 +39,8 @@ Berikut adalah rincian fungsionalitas dari node tersebut:
 *   **Mengekspor Objek Model**: *Output* dari node ini (melalui port keluaran berwarna biru) **bukanlah sebuah tabel data**, melainkan sebuah **Objek Model** (kumpulan aturan logika atau "*rules*"). Model inilah yang nantinya diserahkan ke node *Predictor* untuk menebak data di masa depan, atau diteruskan ke *Model Writer* untuk disimpan.
 
 ## Panduan Pembuatan Model Decision Tree di KNIME
+![gambar](tree.png)
+
 Dokumentasi ini berisi penjelasan dan langkah-langkah untuk membangun alur kerja (*workflow*) *Machine Learning* menggunakan algoritma **Decision Tree** pada KNIME Analytics Platform.
 
 ## Alur Workflow
@@ -370,6 +372,7 @@ F1-Score:  86.2%
 ---
 
 ## Hasil Akhir
+![gambar](dtl-1.png)
 
 ### **Decision Tree Structure** 🌳
 
