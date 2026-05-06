@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Coming soon 🔥 &#8212; Materi perkuliahan - Penambangan Data A</title>
+    <title>Desicion Tree Learning &#8212; Materi perkuliahan - Penambangan Data A</title>
   
   
   
@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Coming soon 🔥" href="Chapters%208.html" />
-    <link rel="prev" title="Coming soon 🔥" href="Chapters%206.html" />
+    <link rel="prev" title="Naive Bayes - Analisis Data" href="Chapters%206.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,8 +182,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapters%203.html">Mengukur Jarak/Similaritas Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%204.html">Midterm Exam</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Chapters%206.html">Coming soon 🔥</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Coming soon 🔥</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapters%206.html">Naive Bayes - Analisis Data</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Desicion Tree Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%208.html">Coming soon 🔥</a></li>
 </ul>
 
@@ -310,7 +311,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -321,11 +324,88 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Coming soon 🔥</h1>
+    <h1>Desicion Tree Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-decision-tree-learning-dan-fungsinya">Memahami Decision Tree Learning dan Fungsinya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-decision-tree-learning">Apa itu Decision Tree Learning?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-utama-decision-tree-learning">Fungsi Utama Decision Tree Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-node-decision-tree-learner-pada-knime">Fungsi Node “Decision Tree Learner” pada KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-pembuatan-model-decision-tree-di-knime">Panduan Pembuatan Model Decision Tree di KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow">Alur Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-per-node">Penjelasan Per Node</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-reader">1. <strong>Excel Reader</strong> 🟠</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-yang-dilakukan">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data">Contoh Data:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">2. <strong>Table Partitioner</strong> 📊</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proportions">Proportions:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">3. <strong>Decision Tree Learner</strong> 🟢</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustrasi-proses-decision-tree">Ilustrasi Proses Decision Tree:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-writer">4. <strong>Model Writer</strong> 💾</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#file-output">File Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">5. <strong>Decision Tree Predictor</strong> 🟢</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-prediksi">Contoh Prediksi:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-appender-deprecated">6. <strong>Color Appender (deprecated)</strong> 🔵</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-output">Contoh Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-deprecated">7. <strong>Scorer (deprecated)</strong> 🟠</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-view">8. <strong>Decision Tree View</strong> 🔷</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-visualisasi">Contoh Visualisasi:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-flow-lengkap">Data Flow Lengkap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-1-data-input-preparation"><strong>Stage 1: Data Input &amp; Preparation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-2-model-building"><strong>Stage 2: Model Building</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-3-model-prediction"><strong>Stage 3: Model Prediction</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-4-evaluation-visualization"><strong>Stage 4: Evaluation &amp; Visualization</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir">Hasil Akhir</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-structure"><strong>Decision Tree Structure</strong> 🌳</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-rules"><strong>Prediction Rules</strong> 📋</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-set-predictions"><strong>Test Set Predictions</strong> 🎯</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-metrics"><strong>Performance Metrics</strong> 📊</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan 🎓</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -335,8 +415,575 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="coming-soon">
-<h1>Coming soon 🔥<a class="headerlink" href="#coming-soon" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="desicion-tree-learning">
+<h1>Desicion Tree Learning<a class="headerlink" href="#desicion-tree-learning" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="memahami-decision-tree-learning-dan-fungsinya">
+<h2>Memahami Decision Tree Learning dan Fungsinya<a class="headerlink" href="#memahami-decision-tree-learning-dan-fungsinya" title="Permalink to this heading">#</a></h2>
+<section id="apa-itu-decision-tree-learning">
+<h3>Apa itu Decision Tree Learning?<a class="headerlink" href="#apa-itu-decision-tree-learning" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="http://googleusercontent.com/image_content/259">http://googleusercontent.com/image_content/259</a></p>
+<p><strong>Decision Tree Learning</strong> (Pembelajaran Pohon Keputusan) adalah salah satu algoritma <em>Machine Learning</em> berjenis <em>Supervised Learning</em> (pembelajaran terarah) yang sangat populer. Algoritma ini memodelkan keputusan beserta kemungkinan akibatnya menjadi sebuah struktur grafik berbentuk pohon.</p>
+<p>Cara kerjanya mirip dengan alur berpikir rasional manusia saat mengambil keputusan. Algoritma ini memecah dataset menjadi kelompok-kelompok yang lebih kecil secara terus-menerus berdasarkan aturan logika “Jika… Maka…” (<em>If-Then</em>).</p>
+<p>Struktur dari Decision Tree terdiri dari tiga elemen utama:</p>
+<ol class="arabic simple">
+<li><p><strong>Root Node (Simpul Akar)</strong>: Titik awal di paling atas yang mewakili seluruh dataset. Ini adalah atribut pengujian pertama yang paling penting.</p></li>
+<li><p><strong>Internal Node (Simpul Cabang)</strong>: Titik pengujian atribut lanjutan. Setiap cabang mewakili hasil dari uji tersebut (misal: Jika cuaca = <em>Hujan</em>, maka lari ke cabang A).</p></li>
+<li><p><strong>Leaf Node (Simpul Daun)</strong>: Titik akhir dari pohon yang tidak bercabang lagi. Node ini menyimpan hasil akhir klasifikasi atau prediksi (misal: Keputusan final = <em>Yes</em> atau <em>No</em>).</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="fungsi-utama-decision-tree-learning">
+<h3>Fungsi Utama Decision Tree Learning<a class="headerlink" href="#fungsi-utama-decision-tree-learning" title="Permalink to this heading">#</a></h3>
+<p>Secara konsep keilmuan Data Science, algoritma ini memiliki fungsi-fungsi vital berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Klasifikasi dan Regresi</strong>: Berfungsi untuk mengategorikan data ke dalam kelas diskrit (misal: <em>Spam</em> / <em>Bukan Spam</em>, <em>Sakit</em> / <em>Sehat</em>) atau memprediksi nilai kontinu (regresi numerik).</p></li>
+<li><p><strong>Menemukan Atribut Paling Signifikan (Feature Selection)</strong>: Algoritma ini secara otomatis menyeleksi faktor atau atribut mana yang paling menentukan hasil akhir melalui perhitungan matematis (seperti <em>Information Gain</em> atau <em>Gini Index</em>).</p></li>
+<li><p><strong>Transparansi Model (White-Box)</strong>: Tidak seperti algoritma rumit (misalnya <em>Neural Networks</em>), fungsi unggulan Decision Tree adalah modelnya sangat mudah divisualisasikan, dibaca, dan dipahami logika bisnisnya oleh manusia awam sekalipun.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="fungsi-node-decision-tree-learner-pada-knime">
+<h3>Fungsi Node “Decision Tree Learner” pada KNIME<a class="headerlink" href="#fungsi-node-decision-tree-learner-pada-knime" title="Permalink to this heading">#</a></h3>
+<p>Dalam ekosistem aplikasi KNIME (seperti pada <em>workflow</em> pembuatan model), node <strong>Decision Tree Learner</strong> bertindak secara spesifik sebagai <strong>“Otak Pembelajar”</strong>.</p>
+<p>Berikut adalah rincian fungsionalitas dari node tersebut:</p>
+<ul class="simple">
+<li><p><strong>Menerima Data Latih (<em>Training Data</em>)</strong>: Node ini membaca data historis yang masuk dari port <em>input</em>-nya. Data ini harus sudah memiliki target/“kunci jawaban” (kolom klasifikasi).</p></li>
+<li><p><strong>Melakukan Kalkulasi Matematis</strong>: Node bekerja di balik layar menghitung <em>Entropy</em> dan probabilitas masing-masing variabel untuk mencari tahu batas pembagian data yang paling murni.</p></li>
+<li><p><strong>Melakukan Pembelahan (<em>Splitting</em>)</strong>: Menentukan kolom mana yang menjadi <em>Root</em>, lalu membuat cabang-cabangnya hingga mencapai kesimpulan akhir di bagian daun (<em>Leaf</em>).</p></li>
+<li><p><strong>Mengekspor Objek Model</strong>: <em>Output</em> dari node ini (melalui port keluaran berwarna biru) <strong>bukanlah sebuah tabel data</strong>, melainkan sebuah <strong>Objek Model</strong> (kumpulan aturan logika atau “<em>rules</em>”). Model inilah yang nantinya diserahkan ke node <em>Predictor</em> untuk menebak data di masa depan, atau diteruskan ke <em>Model Writer</em> untuk disimpan.</p></li>
+</ul>
+</section>
+</section>
+<section id="panduan-pembuatan-model-decision-tree-di-knime">
+<h2>Panduan Pembuatan Model Decision Tree di KNIME<a class="headerlink" href="#panduan-pembuatan-model-decision-tree-di-knime" title="Permalink to this heading">#</a></h2>
+<p>Dokumentasi ini berisi penjelasan dan langkah-langkah untuk membangun alur kerja (<em>workflow</em>) <em>Machine Learning</em> menggunakan algoritma <strong>Decision Tree</strong> pada KNIME Analytics Platform.</p>
+</section>
+<section id="alur-workflow">
+<h2>Alur Workflow<a class="headerlink" href="#alur-workflow" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Excel Reader 
+    ↓
+Table Partitioner 
+    ↓
+Decision Tree Learner 
+    ↓
+(Model Writer) ← [Simpan Model]
+    ↓
+Decision Tree Predictor 
+    ↓
+Color Appender 
+    ↓
+Scorer (deprecated) 
+    ↓
+Decision Tree View 
+    ↓
+[Model Reader + View] ← [Baca &amp; Tampilkan Model]
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-per-node">
+<h2>Penjelasan Per Node<a class="headerlink" href="#penjelasan-per-node" title="Permalink to this heading">#</a></h2>
+<section id="excel-reader">
+<h3>1. <strong>Excel Reader</strong> 🟠<a class="headerlink" href="#excel-reader" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Membaca data dari file Excel</p>
+<section id="apa-yang-dilakukan">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#apa-yang-dilakukan" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Membuka file <code class="docutils literal notranslate"><span class="pre">Play_Tennis_Dataset.xlsx</span></code></p></li>
+<li><p>Membaca semua baris dan kolom</p></li>
+<li><p>Mengkonversi data ke format tabel yang dapat diproses</p></li>
+</ul>
+</section>
+<section id="output">
+<h4>Output:<a class="headerlink" href="#output" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Tabel dengan 14 rows × 6 columns:
+[Day, Outlook, Temp., Humidity, Wind, Play Tennis]
+</pre></div>
+</div>
+</section>
+<section id="contoh-data">
+<h4>Contoh Data:<a class="headerlink" href="#contoh-data" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span>  <span class="o">|</span> <span class="n">Sunny</span>    <span class="o">|</span> <span class="n">Hot</span>   <span class="o">|</span> <span class="n">High</span>   <span class="o">|</span> <span class="kc">False</span> <span class="o">|</span> <span class="n">No</span>
+<span class="n">D2</span>  <span class="o">|</span> <span class="n">Sunny</span>    <span class="o">|</span> <span class="n">Hot</span>   <span class="o">|</span> <span class="n">High</span>   <span class="o">|</span> <span class="kc">True</span>  <span class="o">|</span> <span class="n">No</span>
+<span class="n">D3</span>  <span class="o">|</span> <span class="n">Overcast</span> <span class="o">|</span> <span class="n">Hot</span>   <span class="o">|</span> <span class="n">High</span>   <span class="o">|</span> <span class="kc">False</span> <span class="o">|</span> <span class="n">Yes</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="table-partitioner">
+<h3>2. <strong>Table Partitioner</strong> 📊<a class="headerlink" href="#table-partitioner" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Memisahkan data menjadi training set dan test set</p>
+<section id="id1">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Membagi dataset menjadi dua bagian:</p>
+<ul>
+<li><p><strong>Training Set</strong> (80%): Digunakan untuk membangun model</p></li>
+<li><p><strong>Test Set</strong> (20%): Digunakan untuk evaluasi model</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="proportions">
+<h4>Proportions:<a class="headerlink" href="#proportions" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Total Data: 14 records
+├── Training Set: ~11 records (78.6%)
+└── Test Set: ~3 records (21.4%)
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>Output:<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Training Data</strong> → Ke Decision Tree Learner</p></li>
+<li><p><strong>Test Data</strong> → Disimpan untuk nanti digunakan Color Appender</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="decision-tree-learner">
+<h3>3. <strong>Decision Tree Learner</strong> 🟢<a class="headerlink" href="#decision-tree-learner" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Membangun model decision tree menggunakan training data</p>
+<section id="id3">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Analisis Information Gain</strong> untuk setiap fitur:</p>
+<ul class="simple">
+<li><p>Hitung entropy awal</p></li>
+<li><p>Hitung weighted entropy setelah split</p></li>
+<li><p>Pilih fitur dengan information gain tertinggi</p></li>
+</ul>
+</li>
+<li><p><strong>Recursive Splitting</strong>:</p>
+<ul class="simple">
+<li><p>Bagi data berdasarkan fitur terpilih</p></li>
+<li><p>Ulangi proses untuk setiap subset hingga:</p>
+<ul>
+<li><p>Semua data dalam node memiliki label yang sama</p></li>
+<li><p>Atau kedalaman maksimal tercapai</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="ilustrasi-proses-decision-tree">
+<h4>Ilustrasi Proses Decision Tree:<a class="headerlink" href="#ilustrasi-proses-decision-tree" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                    [All 14 records]
+                      9 Yes, 5 No
+                          |
+                          | Split by OUTLOOK (Information Gain terbesar)
+                          |
+            ______________|______________
+           /              |              \
+      SUNNY           OVERCAST           RAIN
+    (5 records)      (4 records)      (5 records)
+     2 Yes,3 No      4 Yes, 0 No      3 Yes, 2 No
+           |              |              |
+           |          [PURE → YES]       | Split by WIND
+           |                            |
+      Split by              ____________|____________
+      HUMIDITY             /                        \
+           |           WIND=False            WIND=True
+    ______|_____      (3 records)          (2 records)
+   /            \     3 Yes, 0 No          1 Yes, 1 No
+HIGH        NORMAL   [PURE → YES]               |
+(3 Yes,     (2 Yes,                      Split by HUMIDITY
+ 1 No)      2 No)                             |
+  |           |                      ________|________
+  |      Split by                    /                \
+  |      TEMP                    HIGH             NORMAL
+  |        |                  (1 Yes, 1 No)      (0 Yes, 1 No)
+  |     ___|___                     |                 |
+  |    /       \               [LEAF → ?]        [LEAF → NO]
+ ...  ...     ...
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h4>Output:<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Decision Tree Model</strong>: Pohon dengan keputusan berdasarkan split criteria</p></li>
+<li><p>Struktur tree disimpan dalam format yang dapat digunakan untuk prediksi</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="model-writer">
+<h3>4. <strong>Model Writer</strong> 💾<a class="headerlink" href="#model-writer" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Menyimpan model decision tree ke file</p>
+<section id="id5">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Serialisasi model decision tree</p></li>
+<li><p>Simpan ke file format (misal: <code class="docutils literal notranslate"><span class="pre">.model</span></code>, <code class="docutils literal notranslate"><span class="pre">.pkl</span></code>, atau format proprietary)</p></li>
+<li><p>Memungkinkan model digunakan kembali tanpa perlu training ulang</p></li>
+</ul>
+</section>
+<section id="file-output">
+<h4>File Output:<a class="headerlink" href="#file-output" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>decision_tree_model.model
+├── Tree Structure
+├── Split Rules
+└── Leaf Classifications
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="decision-tree-predictor">
+<h3>5. <strong>Decision Tree Predictor</strong> 🟢<a class="headerlink" href="#decision-tree-predictor" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Menggunakan model tree untuk memprediksi test set</p>
+<section id="id6">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Ambil setiap record dari test set</p></li>
+<li><p>Traversal tree dari root ke leaf:</p>
+<ul class="simple">
+<li><p>Di setiap node, cek kondisi fitur</p></li>
+<li><p>Pilih branch yang sesuai</p></li>
+<li><p>Lanjut ke node child</p></li>
+</ul>
+</li>
+<li><p>Ketika mencapai leaf → return prediksi</p></li>
+</ol>
+</section>
+<section id="contoh-prediksi">
+<h4>Contoh Prediksi:<a class="headerlink" href="#contoh-prediksi" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Input Test Record: [Sunny, Cool, High, False, ?]
+
+Traversal:
+├─ Root: Outlook = Sunny? ✓ → Go Left
+├─ Node: Humidity = High? ✓ → Go to Leaf
+└─ LEAF → Predict: NO
+
+Predicted: NO
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h4>Output:<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Predicted Labels</strong> untuk setiap test record</p></li>
+<li><p>Dikirim ke Color Appender</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="color-appender-deprecated">
+<h3>6. <strong>Color Appender (deprecated)</strong> 🔵<a class="headerlink" href="#color-appender-deprecated" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Menambahkan warna ke data berdasarkan hasil prediksi</p>
+<section id="id8">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Bandingkan prediksi dengan nilai sebenarnya</p></li>
+<li><p>Tambahkan color attribute:</p>
+<ul class="simple">
+<li><p>🟢 <strong>Green</strong>: Prediksi benar (True Positive/True Negative)</p></li>
+<li><p>🔴 <strong>Red</strong>: Prediksi salah (False Positive/False Negative)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="contoh-output">
+<h4>Contoh Output:<a class="headerlink" href="#contoh-output" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Day  | Outlook | Temp. | Humidity | Wind | Actual | Predicted | Color
+-----|---------|-------|----------|------|--------|-----------|--------
+D1   | Sunny   | Hot   | High     | False| No     | No        | 🟢 Green
+D2   | Sunny   | Hot   | High     | True | No     | No        | 🟢 Green
+D3   | Sunny   | Cool  | High     | False| Yes    | No        | 🔴 Red
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="scorer-deprecated">
+<h3>7. <strong>Scorer (deprecated)</strong> 🟠<a class="headerlink" href="#scorer-deprecated" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Menghitung metrik evaluasi performa model</p>
+<section id="id9">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<p>Menghitung berbagai metrik evaluasi:</p>
+<p><strong>1. Confusion Matrix:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                    <span class="n">PREDICTED</span>
+                    <span class="n">Yes</span>    <span class="n">No</span>
+        <span class="n">Yes</span>    <span class="p">[</span><span class="n">TP</span><span class="p">]</span>   <span class="p">[</span><span class="n">FN</span><span class="p">]</span>
+<span class="n">ACTUAL</span>
+        <span class="n">No</span>     <span class="p">[</span><span class="n">FP</span><span class="p">]</span>   <span class="p">[</span><span class="n">TN</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>2. Metrik Performa:</strong></p>
+<ul class="simple">
+<li><p><strong>Accuracy</strong> = (TP + TN) / (TP + TN + FP + FN)</p></li>
+<li><p><strong>Precision</strong> = TP / (TP + FP)</p></li>
+<li><p><strong>Recall</strong> = TP / (TP + FN)</p></li>
+<li><p><strong>F1-Score</strong> = 2 × (Precision × Recall) / (Precision + Recall)</p></li>
+</ul>
+<p><strong>Contoh Hasil Scoring:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span><span class="p">:</span>  <span class="mf">85.7</span><span class="o">%</span>
+<span class="n">Precision</span><span class="p">:</span> <span class="mf">87.5</span><span class="o">%</span>
+<span class="n">Recall</span><span class="p">:</span>    <span class="mf">85.0</span><span class="o">%</span>
+<span class="n">F1</span><span class="o">-</span><span class="n">Score</span><span class="p">:</span>  <span class="mf">86.2</span><span class="o">%</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h4>Output:<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Score results dikirim ke Decision Tree View</p></li>
+<li><p>Menampilkan performa model secara keseluruhan</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="decision-tree-view">
+<h3>8. <strong>Decision Tree View</strong> 🔷<a class="headerlink" href="#decision-tree-view" title="Permalink to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Visualisasi final dari decision tree model</p>
+<section id="id11">
+<h4>Apa yang dilakukan:<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Render tree structure secara visual/graphical</p></li>
+<li><p>Tampilkan:</p>
+<ul class="simple">
+<li><p>Node dengan split criteria</p></li>
+<li><p>Leaf dengan prediksi kelas</p></li>
+<li><p>Data distribution di setiap node</p></li>
+<li><p>Akurasi prediksi</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="contoh-visualisasi">
+<h4>Contoh Visualisasi:<a class="headerlink" href="#contoh-visualisasi" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                          <span class="n">OUTLOOK</span>
+                         <span class="o">/</span>   <span class="o">|</span>   \
+                   <span class="n">SUNNY</span><span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>    \<span class="n">RAIN</span>
+                       <span class="o">/</span>   <span class="o">|</span>   <span class="o">|</span>      \
+                   <span class="n">HUMIDITY</span> <span class="n">OVERCAST</span>  <span class="n">WIND</span>
+                    <span class="o">/</span>  \     <span class="o">|</span>       <span class="o">/</span>  \
+                 <span class="n">HIGH</span> <span class="n">NORMAL</span> <span class="n">YES</span>   <span class="n">TRUE</span> <span class="n">FALSE</span>
+                  <span class="n">NO</span>  <span class="n">MAYBE</span>  <span class="n">YES</span>    <span class="n">NO</span>   <span class="n">YES</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-flow-lengkap">
+<h2>Data Flow Lengkap<a class="headerlink" href="#data-flow-lengkap" title="Permalink to this heading">#</a></h2>
+<section id="stage-1-data-input-preparation">
+<h3><strong>Stage 1: Data Input &amp; Preparation</strong><a class="headerlink" href="#stage-1-data-input-preparation" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────────────────────┐
+│ 1. EXCEL READER                                     │
+│    Input: Play_Tennis_Dataset.xlsx                  │
+│    Output: Raw Table (14 × 6)                       │
+└────────────┬────────────────────────────────────────┘
+             │
+┌────────────▼────────────────────────────────────────┐
+│ 2. TABLE PARTITIONER                                │
+│    Input: Raw Table                                 │
+│    - Split 80/20                                    │
+│    Output: Training (11) + Test (3)                 │
+└────────────┬─────────────────────────┬──────────────┘
+             │ (Training)              │ (Test)
+</pre></div>
+</div>
+</section>
+<section id="stage-2-model-building">
+<h3><strong>Stage 2: Model Building</strong><a class="headerlink" href="#stage-2-model-building" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌────────────────────────────────────────────────────┐
+│ 3. DECISION TREE LEARNER                           │
+│    Input: Training Data (11 records)               │
+│    Process:                                        │
+│    - Calculate Information Gain for each feature   │
+│    - Recursively build tree structure              │
+│    - Stop at pure nodes or max depth               │
+│    Output: Trained Decision Tree Model             │
+└────────────┬─────────────────────────┬─────────────┘
+             │ (Model)                 │
+             │                    ┌────▼──────────────┐
+             │                    │ 4. MODEL WRITER   │
+             │                    │ Output: Save .model
+             │                    └───────────────────┘
+             │
+</pre></div>
+</div>
+</section>
+<section id="stage-3-model-prediction">
+<h3><strong>Stage 3: Model Prediction</strong><a class="headerlink" href="#stage-3-model-prediction" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌──────────────────────────────────────────────────────┐
+│ 5. DECISION TREE PREDICTOR                           │
+│    Input: Test Data (3 records) + Tree Model         │
+│    Process:                                          │
+│    - For each test record: traverse tree             │
+│    - Reach leaf node: get prediction                 │
+│    Output: Predicted Labels                          │
+└──────────────┬──────────────────────────────────────┘
+               │
+</pre></div>
+</div>
+</section>
+<section id="stage-4-evaluation-visualization">
+<h3><strong>Stage 4: Evaluation &amp; Visualization</strong><a class="headerlink" href="#stage-4-evaluation-visualization" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌──────────────────────────────────────────────────────┐
+│ 6. COLOR APPENDER (deprecated)                       │
+│    Input: Test Data + Predictions                    │
+│    Output: Colored Results (Green/Red)               │
+└──────────────┬──────────────────────────────────────┘
+               │
+┌──────────────▼──────────────────────────────────────┐
+│ 7. SCORER (deprecated)                               │
+│    Input: Predictions + Actual                       │
+│    Calculates: Accuracy, Precision, Recall, F1      │
+│    Output: Performance Metrics                       │
+└──────────────┬──────────────────────────────────────┘
+               │
+┌──────────────▼──────────────────────────────────────┐
+│ 8. DECISION TREE VIEW                                │
+│    Input: Tree Model + Metrics                       │
+│    Output: Visual Representation + Dashboard         │
+└──────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-akhir">
+<h2>Hasil Akhir<a class="headerlink" href="#hasil-akhir" title="Permalink to this heading">#</a></h2>
+<section id="decision-tree-structure">
+<h3><strong>Decision Tree Structure</strong> 🌳<a class="headerlink" href="#decision-tree-structure" title="Permalink to this heading">#</a></h3>
+<p>Berdasarkan Play Tennis Dataset, decision tree yang dihasilkan memiliki struktur:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ROOT: OUTLOOK
+│
+├─── OUTLOOK = SUNNY (5 records: 2 Yes, 3 No)
+│    │
+│    └─── HUMIDITY
+│        ├─── HIGH (3 records: 0 Yes, 3 No) → **LEAF: NO**
+│        └─── NORMAL (2 records: 2 Yes, 0 No) → **LEAF: YES**
+│
+├─── OUTLOOK = OVERCAST (4 records: 4 Yes, 0 No)
+│    │
+│    └─── **LEAF: YES** (100% pure)
+│
+└─── OUTLOOK = RAIN (5 records: 3 Yes, 2 No)
+     │
+     └─── WIND
+         ├─── FALSE (3 records: 3 Yes, 0 No) → **LEAF: YES**
+         └─── TRUE (2 records: 0 Yes, 2 No) → **LEAF: NO**
+</pre></div>
+</div>
+</section>
+<section id="prediction-rules">
+<h3><strong>Prediction Rules</strong> 📋<a class="headerlink" href="#prediction-rules" title="Permalink to this heading">#</a></h3>
+<p>Dari tree di atas, aturan prediksi adalah:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">IF</span> <span class="n">Outlook</span> <span class="o">=</span> <span class="n">Sunny</span> <span class="n">AND</span> <span class="n">Humidity</span> <span class="o">=</span> <span class="n">High</span>
+   <span class="n">THEN</span> <span class="n">Play</span> <span class="n">Tennis</span> <span class="o">=</span> <span class="n">NO</span>
+
+<span class="mf">2.</span> <span class="n">IF</span> <span class="n">Outlook</span> <span class="o">=</span> <span class="n">Sunny</span> <span class="n">AND</span> <span class="n">Humidity</span> <span class="o">=</span> <span class="n">Normal</span>
+   <span class="n">THEN</span> <span class="n">Play</span> <span class="n">Tennis</span> <span class="o">=</span> <span class="n">YES</span>
+
+<span class="mf">3.</span> <span class="n">IF</span> <span class="n">Outlook</span> <span class="o">=</span> <span class="n">Overcast</span>
+   <span class="n">THEN</span> <span class="n">Play</span> <span class="n">Tennis</span> <span class="o">=</span> <span class="n">YES</span>
+
+<span class="mf">4.</span> <span class="n">IF</span> <span class="n">Outlook</span> <span class="o">=</span> <span class="n">Rain</span> <span class="n">AND</span> <span class="n">Wind</span> <span class="o">=</span> <span class="kc">False</span>
+   <span class="n">THEN</span> <span class="n">Play</span> <span class="n">Tennis</span> <span class="o">=</span> <span class="n">YES</span>
+
+<span class="mf">5.</span> <span class="n">IF</span> <span class="n">Outlook</span> <span class="o">=</span> <span class="n">Rain</span> <span class="n">AND</span> <span class="n">Wind</span> <span class="o">=</span> <span class="kc">True</span>
+   <span class="n">THEN</span> <span class="n">Play</span> <span class="n">Tennis</span> <span class="o">=</span> <span class="n">NO</span>
+</pre></div>
+</div>
+</section>
+<section id="test-set-predictions">
+<h3><strong>Test Set Predictions</strong> 🎯<a class="headerlink" href="#test-set-predictions" title="Permalink to this heading">#</a></h3>
+<p>Asumsi test set (3 records):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Record</p></th>
+<th class="head"><p>Outlook</p></th>
+<th class="head"><p>Temp.</p></th>
+<th class="head"><p>Humidity</p></th>
+<th class="head"><p>Wind</p></th>
+<th class="head"><p>Actual</p></th>
+<th class="head"><p>Predicted</p></th>
+<th class="head"><p>✓/✗</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Test 1</p></td>
+<td><p>Sunny</p></td>
+<td><p>Mild</p></td>
+<td><p>High</p></td>
+<td><p>False</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>Test 2</p></td>
+<td><p>Overcast</p></td>
+<td><p>Mild</p></td>
+<td><p>Normal</p></td>
+<td><p>False</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><td><p>Test 3</p></td>
+<td><p>Rain</p></td>
+<td><p>Cool</p></td>
+<td><p>Normal</p></td>
+<td><p>True</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>✓</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Accuracy: 3/3 = 100%</strong> ✓</p>
+</section>
+<section id="performance-metrics">
+<h3><strong>Performance Metrics</strong> 📊<a class="headerlink" href="#performance-metrics" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Confusion Matrix:
+                PREDICTED
+                Yes    No
+        Yes     2      0      (True Positive, False Negative)
+ACTUAL
+        No      0      1      (False Positive, True Negative)
+
+Metrik:
+├─ Accuracy:  3/3 = 100%
+├─ Precision: 2/2 = 100%
+├─ Recall:    2/2 = 100%
+└─ F1-Score:  1.00
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>Kesimpulan 🎓<a class="headerlink" href="#kesimpulan" title="Permalink to this heading">#</a></h2>
+<p><strong>Workflow Decision Tree</strong> ini menunjukkan proses lengkap machine learning:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Input</strong> → Baca file Excel</p></li>
+<li><p><strong>Data Preparation</strong> → Pisahkan train/test</p></li>
+<li><p><strong>Model Training</strong> → Bangun decision tree dengan information gain</p></li>
+<li><p><strong>Model Storage</strong> → Simpan model untuk reuse</p></li>
+<li><p><strong>Prediction</strong> → Prediksi menggunakan test set</p></li>
+<li><p><strong>Evaluation</strong> → Hitung metrics dan visualisasi</p></li>
+<li><p><strong>Visualization</strong> → Tampilkan hasil final</p></li>
+</ol>
+<p><strong>Feature Importance (berdasarkan tree):</strong></p>
+<ul class="simple">
+<li><p><strong>Outlook</strong>: Root node → Paling penting</p></li>
+<li><p><strong>Wind</strong>: Secondary split → Penting</p></li>
+<li><p><strong>Humidity</strong>: Secondary split → Penting</p></li>
+<li><p><strong>Temp.</strong>: Tidak digunakan → Tidak relevan</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Dibuat dengan ❤️ untuk dokumentasi Decision Tree Workflow</strong></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -375,7 +1022,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Coming soon 🔥</p>
+        <p class="prev-next-title">Naive Bayes - Analisis Data</p>
       </div>
     </a>
     <a class="right-next"
@@ -393,6 +1040,90 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-decision-tree-learning-dan-fungsinya">Memahami Decision Tree Learning dan Fungsinya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-decision-tree-learning">Apa itu Decision Tree Learning?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-utama-decision-tree-learning">Fungsi Utama Decision Tree Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-node-decision-tree-learner-pada-knime">Fungsi Node “Decision Tree Learner” pada KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-pembuatan-model-decision-tree-di-knime">Panduan Pembuatan Model Decision Tree di KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow">Alur Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-per-node">Penjelasan Per Node</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-reader">1. <strong>Excel Reader</strong> 🟠</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-yang-dilakukan">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data">Contoh Data:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">2. <strong>Table Partitioner</strong> 📊</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proportions">Proportions:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">3. <strong>Decision Tree Learner</strong> 🟢</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustrasi-proses-decision-tree">Ilustrasi Proses Decision Tree:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-writer">4. <strong>Model Writer</strong> 💾</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#file-output">File Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">5. <strong>Decision Tree Predictor</strong> 🟢</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-prediksi">Contoh Prediksi:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-appender-deprecated">6. <strong>Color Appender (deprecated)</strong> 🔵</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-output">Contoh Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-deprecated">7. <strong>Scorer (deprecated)</strong> 🟠</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Output:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-view">8. <strong>Decision Tree View</strong> 🔷</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Apa yang dilakukan:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-visualisasi">Contoh Visualisasi:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-flow-lengkap">Data Flow Lengkap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-1-data-input-preparation"><strong>Stage 1: Data Input &amp; Preparation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-2-model-building"><strong>Stage 2: Model Building</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-3-model-prediction"><strong>Stage 3: Model Prediction</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-4-evaluation-visualization"><strong>Stage 4: Evaluation &amp; Visualization</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir">Hasil Akhir</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-structure"><strong>Decision Tree Structure</strong> 🌳</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-rules"><strong>Prediction Rules</strong> 📋</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-set-predictions"><strong>Test Set Predictions</strong> 🎯</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-metrics"><strong>Performance Metrics</strong> 📊</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan 🎓</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
