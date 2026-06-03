@@ -567,16 +567,9 @@ plt.show()
 
 Model KNN dengan **4 lag hari** memberikan performa terbaik berdasarkan R² Score (0.80) dan MAPE (13.38%). Penambahan lag hari yang lebih panjang (10 dan 30 hari) justru menurunkan akurasi model, yang konsisten dengan hasil analisis korelasi yang menunjukkan lag pendek (t-1, t-2, t-3) memiliki korelasi jauh lebih tinggi.
 
----
-
-## 5. Saran Pengembangan
-
-- Mencoba model yang lebih kompleks seperti **LSTM** atau **Random Forest** untuk menangkap pola nonlinear.
-- Menambahkan **normalisasi/scaling** yang konsisten antara data train dan test sebelum KNN.
-- Melakukan **hyperparameter tuning** nilai `k` pada KNN (saat ini menggunakan k=5 secara default).
-- Mempertimbangkan **cross-validation time series** (misal: TimeSeriesSplit) untuk evaluasi yang lebih robust.
-- Menambahkan fitur eksogen seperti data cuaca atau musim untuk meningkatkan akurasi.
 
 ---
 
-*Laporan ini dibuat berdasarkan analisis notebook Google Colab `Untitled0.ipynb`.*
+*Laporan ini dibuat berdasarkan analisis notebook Google Colab `Untitled0.ipynb`.file bisa di akses dibawah ini*
+*https://colab.research.google.com/drive/1HOCilhfmcWGiwvRSDF3pR4HIOLRyvlx3?usp=sharing*
+
