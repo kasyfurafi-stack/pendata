@@ -351,7 +351,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">4. Kesimpulan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saran-pengembangan">5. Saran Pengembangan</a></li>
 </ul>
             </nav>
         </div>
@@ -1013,19 +1012,9 @@ Upper Bound = Q3 + 1.5 × IQR
 </table>
 </div>
 <p>Model KNN dengan <strong>4 lag hari</strong> memberikan performa terbaik berdasarkan R² Score (0.80) dan MAPE (13.38%). Penambahan lag hari yang lebih panjang (10 dan 30 hari) justru menurunkan akurasi model, yang konsisten dengan hasil analisis korelasi yang menunjukkan lag pendek (t-1, t-2, t-3) memiliki korelasi jauh lebih tinggi.</p>
-</section>
 <hr class="docutils" />
-<section id="saran-pengembangan">
-<h2>5. Saran Pengembangan<a class="headerlink" href="#saran-pengembangan" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Mencoba model yang lebih kompleks seperti <strong>LSTM</strong> atau <strong>Random Forest</strong> untuk menangkap pola nonlinear.</p></li>
-<li><p>Menambahkan <strong>normalisasi/scaling</strong> yang konsisten antara data train dan test sebelum KNN.</p></li>
-<li><p>Melakukan <strong>hyperparameter tuning</strong> nilai <code class="docutils literal notranslate"><span class="pre">k</span></code> pada KNN (saat ini menggunakan k=5 secara default).</p></li>
-<li><p>Mempertimbangkan <strong>cross-validation time series</strong> (misal: TimeSeriesSplit) untuk evaluasi yang lebih robust.</p></li>
-<li><p>Menambahkan fitur eksogen seperti data cuaca atau musim untuk meningkatkan akurasi.</p></li>
-</ul>
-<hr class="docutils" />
-<p><em>Laporan ini dibuat berdasarkan analisis notebook Google Colab <code class="docutils literal notranslate"><span class="pre">Untitled0.ipynb</span></code>.</em></p>
+<p><em>Laporan ini dibuat berdasarkan analisis notebook Google Colab <code class="docutils literal notranslate"><span class="pre">Untitled0.ipynb</span></code>.file bisa di akses dibawah ini</em>
+<em><a class="reference external" href="https://colab.research.google.com/drive/1HOCilhfmcWGiwvRSDF3pR4HIOLRyvlx3?usp=sharing">https://colab.research.google.com/drive/1HOCilhfmcWGiwvRSDF3pR4HIOLRyvlx3?usp=sharing</a></em></p>
 </section>
 </section>
 
@@ -1102,7 +1091,6 @@ Upper Bound = Q3 + 1.5 × IQR
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">4. Kesimpulan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saran-pengembangan">5. Saran Pengembangan</a></li>
 </ul>
   </nav></div>
 
