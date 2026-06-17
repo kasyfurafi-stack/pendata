@@ -65,11 +65,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapters 7';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapters 9';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Laporan Analisis: Prediksi Kadar NO2 di Wilayah Talango Menggunakan KNN Regression" href="Chapters%208.html" />
-    <link rel="prev" title="Naive Bayes - Analisis Data" href="Chapters%206.html" />
+    <link rel="prev" title="Laporan Analisis: Prediksi Kadar NO2 di Wilayah Talango Menggunakan KNN Regression" href="Chapters%208.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,9 +183,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="Chapters%206.html">Naive Bayes - Analisis Data</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Laporan Analisis: Prediksi Performa Mahasiswa Menggunakan Algoritma Decision Tree di KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapters%207.html">Laporan Analisis: Prediksi Performa Mahasiswa Menggunakan Algoritma Decision Tree di KNIME</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapters%208.html">Laporan Analisis: Prediksi Kadar NO2 di Wilayah Talango Menggunakan KNN Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapters%209.html">Laporan Analisis: Prediksi Performa Mahasiswa Menggunakan Algoritma Decision Tree di KNIME</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Laporan Analisis: Prediksi Performa Mahasiswa Menggunakan Algoritma Decision Tree di KNIME</a></li>
 </ul>
 
     </div>
@@ -241,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/Chapters 7.md" target="_blank"
+      <li><a href="_sources/Chapters 9.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,11 +340,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-dan-cara-membuat-node-hingga-akhir">4. Penjelasan dan Cara Membuat Node Hingga Akhir</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-a-data-preparation-persiapan-data">Tahap A: Data Preparation (Persiapan Data)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-b-data-splitting-pembagian-data">Tahap B: Data Splitting (Pembagian Data)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-c-modeling-pelatihan-prediksi">Tahap C: Modeling (Pelatihan &amp; Prediksi)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-d-evaluation-evaluasi">Tahap D: Evaluation (Evaluasi)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">5. Hasil</a></li>
 </ul>
             </nav>
         </div>
@@ -407,106 +403,34 @@ document.write(`
 <hr class="docutils" />
 <section id="penjelasan-dan-cara-membuat-node-hingga-akhir">
 <h2>4. Penjelasan dan Cara Membuat Node Hingga Akhir<a class="headerlink" href="#penjelasan-dan-cara-membuat-node-hingga-akhir" title="Permalink to this heading">#</a></h2>
-<p>Berikut adalah tahapan perakitan <em>workflow</em> dan sambungan kabel (<em>port</em>) antar node secara spesifik:</p>
+<p>Berikut adalah tahapan <em>step-by-step</em> eksekusi di KNIME:</p>
 <section id="tahap-a-data-preparation-persiapan-data">
 <h3>Tahap A: Data Preparation (Persiapan Data)<a class="headerlink" href="#tahap-a-data-preparation-persiapan-data" title="Permalink to this heading">#</a></h3>
-<p><strong>1. CSV Reader</strong></p>
-<ul class="simple">
-<li><p><strong>Fungsi:</strong> Mengimpor dataset <code class="docutils literal notranslate"><span class="pre">.csv</span></code> ke dalam lembar kerja KNIME.</p></li>
-<li><p><strong>Cara Perakitan:</strong> 1. Tarik node <em>CSV Reader</em> ke <em>workspace</em>.
-2. Klik ganda (Configure). Pada tab <em>Settings</em>, klik tombol <em>Browse</em> dan masukkan file <code class="docutils literal notranslate"><span class="pre">dataset_mahasiswa_uci_856.csv</span></code>.
-3. Pastikan kotak <em>Has Column Header</em> dicentang agar baris pertama dibaca sebagai judul. Klik OK dan <em>Execute</em>.</p></li>
-</ul>
-<p><strong>2. Number To String</strong></p>
-<ul class="simple">
-<li><p><strong>Fungsi:</strong> Mengubah atribut kategori yang berwujud angka (seperti kode gender 1=Pria) menjadi <em>String</em> agar terbaca sebagai label, bukan angka matematis.</p></li>
-<li><p><strong>Cara Perakitan:</strong></p>
 <ol class="arabic simple">
-<li><p>Tarik node <em>Number To String</em>.</p></li>
-<li><p><strong>Sambungkan garis</strong> dari port segitiga hitam (kanan) milik <em>CSV Reader</em> ke port segitiga putih (kiri) milik <em>Number To String</em>.</p></li>
-<li><p><em>Configure</em>. Pindahkan kolom Target (contoh: <code class="docutils literal notranslate"><span class="pre">Grade</span></code> atau <code class="docutils literal notranslate"><span class="pre">Scholarship</span> <span class="pre">type</span></code>) dan kolom nominal lainnya dari kotak <em>Exclude</em> ke kotak <em>Include</em>. Klik OK dan <em>Execute</em>.</p></li>
-</ol>
-</li>
+<li><p><strong>CSV Reader</strong>:</p>
+<ul class="simple">
+<li><p><em>Fungsi:</em> Mengimpor dataset <code class="docutils literal notranslate"><span class="pre">.csv</span></code> ke dalam sistem.</p></li>
+<li><p><em>Cara:</em> Tambahkan node, <em>Configure</em>, klik <em>Browse</em> dan pilih file <code class="docutils literal notranslate"><span class="pre">dataset_mahasiswa_uci_856.csv</span></code>. Centang <em>Has Column Header</em>.</p></li>
 </ul>
+</li>
+<li><p><strong>Number To String</strong>:</p>
+<ul class="simple">
+<li><p><em>Fungsi:</em> Mengubah atribut berskala nominal/ordinal (seperti kode tipe beasiswa atau gender) dari angka (Number) menjadi teks (String) agar algoritma membacanya sebagai klasifikasi, bukan perhitungan matematika.</p></li>
+<li><p><em>Cara:</em> Sambungkan dari CSV Reader. <em>Configure</em>, lalu masukkan kolom <em>Target</em> dan kolom kategori lainnya dari kotak <em>Exclude</em> ke kotak <em>Include</em>.</p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="tahap-b-data-splitting-pembagian-data">
 <h3>Tahap B: Data Splitting (Pembagian Data)<a class="headerlink" href="#tahap-b-data-splitting-pembagian-data" title="Permalink to this heading">#</a></h3>
-<p><strong>3. Table Partitioner</strong></p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Table Partitioner</strong>:</p>
 <ul class="simple">
-<li><p><strong>Fungsi:</strong> Memecah data menjadi dua jalur: Data Latih (untuk belajar) dan Data Uji (untuk tes akurasi).</p></li>
-<li><p><strong>Cara Perakitan:</strong></p>
-<ol class="arabic simple">
-<li><p>Tarik node <em>Table Partitioner</em>.</p></li>
-<li><p><strong>Sambungkan garis</strong> dari port kanan <em>Number To String</em> ke port kiri <em>Table Partitioner</em>.</p></li>
-<li><p><em>Configure</em>. Pilih opsi <strong>Relative</strong> dan ketik persentase <strong>80%</strong>. Klik OK dan <em>Execute</em>.
-<em>(Catatan: Node ini memiliki 2 output. Segitiga atas adalah 80% data latih, segitiga bawah adalah 20% data uji).</em></p></li>
-</ol>
-</li>
+<li><p><em>Fungsi:</em> Mem</p></li>
 </ul>
-<p><strong>4. Color Manager (Opsional)</strong></p>
-<ul class="simple">
-<li><p><strong>Fungsi:</strong> Mewarnai baris data berdasarkan kategori target (misal: Lulus = Hijau, Gagal = Merah).</p></li>
-<li><p><strong>Cara Perakitan:</strong></p>
-<ol class="arabic simple">
-<li><p>Tarik node <em>Color Manager</em>.</p></li>
-<li><p><strong>Sambungkan garis</strong> dari <strong>port segitiga ATAS</strong> milik <em>Table Partitioner</em> ke port kiri <em>Color Manager</em>.</p></li>
-<li><p><em>Configure</em>. Pilih kolom Target Anda pada menu <em>Column</em>, lalu atur warna tiap nilai. Klik OK.</p></li>
-</ol>
 </li>
-</ul>
+</ol>
 </section>
-<section id="tahap-c-modeling-pelatihan-prediksi">
-<h3>Tahap C: Modeling (Pelatihan &amp; Prediksi)<a class="headerlink" href="#tahap-c-modeling-pelatihan-prediksi" title="Permalink to this heading">#</a></h3>
-<p><strong>5. Decision Tree Learner</strong></p>
-<ul class="simple">
-<li><p><strong>Fungsi:</strong> Membangun aturan percabangan pohon keputusan berdasarkan hitungan <em>Information Gain</em> dari Data Latih.</p></li>
-<li><p><strong>Cara Perakitan:</strong></p>
-<ol class="arabic simple">
-<li><p>Tarik node <em>Decision Tree Learner</em>.</p></li>
-<li><p><strong>Sambungkan garis</strong> dari port kanan <em>Color Manager</em> ke port kiri <em>Decision Tree Learner</em>. (Jika tidak pakai Color Manager, sambungkan dari port ATAS Partitioner).</p></li>
-<li><p><em>Configure</em>. Pada kotak <strong>Class column</strong>, pilih kolom Target (kunci jawaban) yang ingin diprediksi. Klik OK dan <em>Execute</em>.
-<em>(Catatan: Node ini menghasilkan output berupa objek model, ditandai dengan port kotak berwarna biru).</em></p></li>
-</ol>
-</li>
-</ul>
-<p><strong>6. Decision Tree Predictor</strong></p>
-<ul class="simple">
-<li><p><strong>Fungsi:</strong> Menerapkan model/pola yang sudah dipelajari untuk menebak data baru (<em>Testing Data</em>).</p></li>
-<li><p><strong>Cara Perakitan:</strong></p>
-<ol class="arabic simple">
-<li><p>Tarik node <em>Decision Tree Predictor</em>. Node ini butuh 2 input (Model dan Data Uji).</p></li>
-<li><p><strong>Sambungan 1 (Input Model):</strong> Tarik garis dari <strong>port kotak biru</strong> (kanan) milik <em>Decision Tree Learner</em> ke <strong>port kotak biru</strong> (kiri atas) milik <em>Predictor</em>.</p></li>
-<li><p><strong>Sambungan 2 (Input Data):</strong> Tarik garis dari <strong>port segitiga BAWAH</strong> milik <em>Table Partitioner</em> (Data Uji 20%) ke <strong>port segitiga</strong> (kiri bawah) milik <em>Predictor</em>.</p></li>
-<li><p><em>Configure</em>. Biarkan <em>default</em>, node ini akan membuat kolom baru bernama <em>Prediction</em>. Klik OK dan <em>Execute</em>.</p></li>
-</ol>
-</li>
-</ul>
-</section>
-<section id="tahap-d-evaluation-evaluasi">
-<h3>Tahap D: Evaluation (Evaluasi)<a class="headerlink" href="#tahap-d-evaluation-evaluasi" title="Permalink to this heading">#</a></h3>
-<p><strong>7. Scorer</strong></p>
-<ul class="simple">
-<li><p><strong>Fungsi:</strong> Menilai seberapa akurat tebakan mesin dengan membandingkan kolom prediksi dan kolom aktual.</p></li>
-<li><p><strong>Cara Perakitan:</strong></p>
-<ol class="arabic simple">
-<li><p>Tarik node <em>Scorer</em>.</p></li>
-<li><p><strong>Sambungkan garis</strong> dari port kanan <em>Decision Tree Predictor</em> ke port kiri <em>Scorer</em>.</p></li>
-<li><p><em>Configure</em>. Pada <em>First Column</em>, pilih kolom jawaban asli (misal: <code class="docutils literal notranslate"><span class="pre">Grade</span></code>). Pada <em>Second Column</em>, pilih kolom tebakan mesin (misal: <code class="docutils literal notranslate"><span class="pre">Prediction</span> <span class="pre">(Grade)</span></code>). Klik OK dan <em>Execute</em>.</p></li>
-</ol>
-</li>
-</ul>
-</section>
-</section>
-<hr class="docutils" />
-<section id="hasil">
-<h2>5. Hasil<a class="headerlink" href="#hasil" title="Permalink to this heading">#</a></h2>
-<p>Setelah keseluruhan <em>workflow</em> dieksekusi (berstatus lampu hijau), hasil analisis dapat diinterpretasikan melalui dua cara utama:</p>
-<ol class="arabic simple">
-<li><p><strong>Akurasi Model (Scorer Node)</strong>
-Dengan melakukan klik kanan pada node <em>Scorer</em> dan memilih <strong>Accuracy Statistics</strong>, kita dapat melihat nilai <strong>Accuracy</strong>. Nilai ini merepresentasikan persentase tebakan mesin yang benar (misalnya 85%). Selain itu, tabel <strong>Confusion Matrix</strong> menunjukkan secara detail rincian tebakan (berapa banyak data mahasiswa berprestasi yang berhasil ditebak benar, dan berapa prediksi yang meleset).</p></li>
-<li><p><strong>Penemuan Pola Aturan (Decision Tree View)</strong>
-Dengan melakukan klik kanan pada node <em>Decision Tree Learner</em> dan memilih <strong>View: Decision Tree View</strong>, sistem menampilkan diagram pohon keputusan secara visual. Dari grafik ini, dapat disimpulkan atribut apa yang terpilih sebagai <em>Root Node</em> (Akar tertinggi). Atribut yang berada paling atas merupakan faktor paling penting dan paling kuat dalam menentukan nilai akhir seorang mahasiswa (misalnya, atribut <em>Weekly study hours</em> atau <em>Scholarship type</em>). Pola rentetan <em>If-Then</em> ini dapat dijadikan rujukan pengambil kebijakan kampus untuk memantau performa mahasiswanya.</p></li>
-</ol>
 </section>
 </section>
 
@@ -541,22 +465,13 @@ Dengan melakukan klik kanan pada node <em>Decision Tree Learner</em> dan memilih
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Chapters%206.html"
+       href="Chapters%208.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Naive Bayes - Analisis Data</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="Chapters%208.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Laporan Analisis: Prediksi Kadar NO2 di Wilayah Talango Menggunakan KNN Regression</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -580,11 +495,8 @@ Dengan melakukan klik kanan pada node <em>Decision Tree Learner</em> dan memilih
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-dan-cara-membuat-node-hingga-akhir">4. Penjelasan dan Cara Membuat Node Hingga Akhir</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-a-data-preparation-persiapan-data">Tahap A: Data Preparation (Persiapan Data)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-b-data-splitting-pembagian-data">Tahap B: Data Splitting (Pembagian Data)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-c-modeling-pelatihan-prediksi">Tahap C: Modeling (Pelatihan &amp; Prediksi)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-d-evaluation-evaluasi">Tahap D: Evaluation (Evaluasi)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">5. Hasil</a></li>
 </ul>
   </nav></div>
 
